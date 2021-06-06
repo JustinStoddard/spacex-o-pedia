@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-const LandingPage = lazy(() => import('./Components/LandindPage/LandingPage'));
+const LandingPage = lazy(() => import('./Components/LandingPage/LandingPage'));
 const NotFoundView = lazy(() => import('./Components/NotFoundView/NotFoundView'));
 
 const App = () => {
