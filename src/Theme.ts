@@ -1,17 +1,46 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
-  interface ThemeOptions {    
-    [key: string]: any;
+  interface Theme {
+    appDrawer: {
+      palette: {
+        primary: string;
+        secondary: string
+      }
+      fonts: {
+        primary: string
+      }
+    }
+  }
+  // allow configuration using `createMuiTheme`
+  interface ThemeOptions {
+    appDrawer: {
+      palette: {
+        primary: string;
+        secondary: string;
+      }
+      fonts: {
+        primary: string;
+      }
+    }
   }
 }
 
-const palette = {
-  primary: {
-    main: "#ff0000"
-  }
+const createMyTheme = (options: ThemeOptions) => {
+  return createMuiTheme({...options});
 };
 
-const themeName = 'spacex-o-pedia theme';
+const theme = createMyTheme({
+  appDrawer: {
+    palette: {
+      primary: "",
+      secondary: "",
+    },
+    fonts: {
+      primary: "Space Grotesk",
+    }
+  },
+});
 
-export default createMuiTheme({ palette, themeName });
+export default theme;

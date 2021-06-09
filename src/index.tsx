@@ -4,11 +4,11 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Theme from './Theme';
+import theme from './Theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline>
         <App />
       </CssBaseline>

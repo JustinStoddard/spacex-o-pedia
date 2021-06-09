@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-const LandingPage = lazy(() => import('./Components/LandingPage/LandingPage'));
+import LandingPage from './Pages/LandingPage';
+
+const CheckoutPage = lazy(() => import('./Pages/CheckoutPage'));
 const NotFoundView = lazy(() => import('./Components/NotFoundView/NotFoundView'));
 
 const App = () => {
@@ -11,6 +13,7 @@ const App = () => {
       <Suspense fallback={<h1>loading...</h1>}>
         <Switch>
           <Route exact path='/' component={LandingPage} />
+          <Route exact path="/checkout/:category" component={CheckoutPage} />
           <Route exact path='/404' component={NotFoundView} />
           <Route path="*">
             <Redirect to='/404' />
