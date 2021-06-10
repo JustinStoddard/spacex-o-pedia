@@ -83,7 +83,7 @@ const LandingPage = () => {
 
   const options = [
     {
-      name: "Ships"
+      name: "Launches"
     },
     {
       name: "Rockets"
@@ -95,9 +95,6 @@ const LandingPage = () => {
       name: "Missions"
     },
     {
-      name: "Launches"
-    },
-    {
       name: "Payloads"
     },
     {
@@ -105,6 +102,9 @@ const LandingPage = () => {
     },
     {
       name: "Dragons"
+    },
+    {
+      name: "Ships"
     },
     {
       name: "Landing Pads"
