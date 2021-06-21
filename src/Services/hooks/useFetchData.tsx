@@ -58,7 +58,7 @@ const useFetchData = (fetchType: string | undefined) => {
   const setData = (type: string | undefined) => {
     axios({
       method: 'GET',
-      url: `https://api.spacexdata.com/v3/${type}`,
+      url: `https://api.spacexdata.com/v4/${type}`
     }).then(data => {
       dispatch({
         type: 'success',

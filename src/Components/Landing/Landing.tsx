@@ -131,7 +131,7 @@ const LandingPage = () => {
       </div>
       <Grid container spacing={3} className={classes.optionsContainer}>
         {options.map((option, index) => {
-          const prettyLinkParam = option.name.replace(/ /g, "-").toLowerCase();
+          const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
           return (
             <Grid item key={index}>

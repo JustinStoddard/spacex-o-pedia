@@ -51,7 +51,7 @@ const Checkout = ({}: CheckoutProps) => {
   const classes = useStyles();
   const history = useHistory();
   const params = useParams<ParamTypes>();
-  const category = params.category;
+  const category = params?.category ?? "";
   const [{ isFetching, isSuccessful, errorMessage, result }, getData] = useFetchData(category);
 
   useEffect(() => {
@@ -95,7 +95,7 @@ const Checkout = ({}: CheckoutProps) => {
       )}
       {(isSuccessful && result) && (
         <Grid item xs={12} data-testid="checkout-success">
-          <CheckoutAccordion result={result} />
+          <CheckoutAccordion result={result} category={category} />
         </Grid>
       )}
     </Grid>

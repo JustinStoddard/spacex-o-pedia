@@ -7,13 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import theme from './Theme';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline>
-        <App />
-      </CssBaseline>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={theme}>
+    <CssBaseline>
+      <App />
+    </CssBaseline>
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
