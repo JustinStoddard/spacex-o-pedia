@@ -64,7 +64,7 @@ const Nav = ({}: NavProps) => {
         <div className={classes.navLogoContainer}>
           <img src={Image} className={classes.navLogo} />
         </div>
-        <div className={classes.navHeader}>SPACEXopedia</div>
+        <div className={classes.navHeader}>space|x|opedia</div>
       </div>
     </div>
   );
