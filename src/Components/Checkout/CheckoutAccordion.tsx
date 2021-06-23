@@ -5,7 +5,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  TextField,
   Grid,
   useMediaQuery,
 } from '@material-ui/core';
@@ -36,7 +35,7 @@ const useStyles = makeStyles(theme => createStyles({
     borderRight: "0px",
     borderTop: "0px",
     borderRadius: "5px",
-    marginBottom: "30px",
+    marginBottom: "25px",
     marginRight: "15px",
     maxWidth: "450px",
     cursor: "pointer",
@@ -53,7 +52,7 @@ const useStyles = makeStyles(theme => createStyles({
   },
   checkoutHeader: {
     background: "#000",
-    width: "250px",
+    width: "100%",
     padding: "10px",
     boxShadow: "-8px 8px 0px -1px #000000",
     borderLeft: "1px solid #fff",
@@ -61,8 +60,7 @@ const useStyles = makeStyles(theme => createStyles({
     borderRight: "0px",
     borderTop: "0px",
     borderRadius: "5px",
-    marginBottom: "30px",
-    maxWidth: "450px",
+    marginBottom: "25px",
     display: "flex",
     alignItems: "center",
     transition: "0.3s",
@@ -82,12 +80,12 @@ const useStyles = makeStyles(theme => createStyles({
     display: "flex",
     justifyContent: "space-between",
     marginTop: "95px",
-    marginLeft: "30px",
-    marginRight: "30px",
+    paddingLeft: "30px",
+    paddingRight: "30px",
     zIndex: 5,
     "@media (max-width: 600px)": {
-      marginLeft: "15px",
-      marginRight: "15px",
+      paddingLeft: "15px",
+      paddingRight: "15px",
     },
   },
   checkoutHeaderLeftContainer: {
@@ -116,7 +114,24 @@ const useStyles = makeStyles(theme => createStyles({
         background: '#000',
       }
     },
-  }
+  },
+  searchInputContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  searchInput: {
+    padding: "15px 15px",
+    fontSize: "15px",
+    borderRadius: "5px",
+    outline: "none",
+    fontFamily: theme.appDrawer.fonts.primary,
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    "@media (max-width: 600px)": {
+      marginBottom: "30px",
+      width: "100%"
+    },
+  },
 }));
 
 const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
@@ -124,10 +139,9 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
   const results = Object.keys(result).reverse();
   const history = useHistory();
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const count = Math.round(results.length / (isMobile ? 4 : 8));
   const [expanded, setExpanded] = useState("");
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState([0, (isMobile ? 3 : 9)]);
+  const [pagination, setPagination] = useState([0, (isMobile ? 2 : 9)]);
   const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (panel: string) => (e: any, isExpanded: boolean) => {
@@ -136,6 +150,11 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
 
   const generateResults = useCallback(() => {
     let filteredResults = results;
+
+    filteredResults = getFilters({ category, result, filteredResults, searchValue });
+
+    let count = Math.round(filteredResults.length / (isMobile ? 3 : 10));
+    count = isMobile ? count : count + 1;
 
     filteredResults = filteredResults.filter((key: string, index: number) => {
       const startBoundry = pagination[0];
@@ -146,14 +165,15 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
       return null;
     });
 
-    filteredResults = getFilters({ category, results: filteredResults });
-
-    return filteredResults;
-  }, [pagination]);
+    return {
+      filteredResults,
+      count,
+    };
+  }, [pagination, searchValue, isMobile]);
 
   const handlePaginationChange = (e: any, value: any) => {
-    const start = (value - 1) * (isMobile ? 4 : 10);
-    const end = start + (isMobile ? 3 : 9);
+    const start = (value - 1) * (isMobile ? 3 : 10);
+    const end = start + (isMobile ? 2 : 9);
     const newPagination = [start, end];
     setPagination(newPagination);
     setExpanded("");
@@ -161,13 +181,15 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
   };
 
   useEffect(() => {
-    handlePaginationChange("", page);
+    handlePaginationChange("", 1);
   }, [isMobile]);
+
+  const { filteredResults, count } = generateResults();
 
   return (
     <>
       <Grid container className={classes.checkoutHeaderContainer}>
-        <Grid item xs={12} sm={4} className={classes.checkoutHeaderLeftContainer}>
+        <Grid item xs={12} sm={4}>
           <div className={classes.checkoutHeaderLeftContainer}>
             <button
               type="button"
@@ -181,18 +203,20 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
             </div>
           </div>
         </Grid>
-        {/* <Grid item xs={12} sm={8}>
-          <TextField
-            type="text"
-            variant="outlined"
-            placeholder={`Search ${category}`}
-            value={searchValue}
-            onChange={(e: any) => setSearchValue(e.target.value)}
-          />
-        </Grid> */}
+        <Grid item xs={12} sm={4}>
+          <div className={classes.searchInputContainer}>
+            <input
+              type="text"
+              value={searchValue}
+              placeholder={`Search ${category}`}
+              className={classes.searchInput}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+          </div>
+        </Grid>
       </Grid>
       <div className={classes.accordionContainer}>
-        {generateResults().map((key: any, index: number) => {
+        {filteredResults.map((key: any, index: number) => {
           const item = result[key];
 
           return (
@@ -215,6 +239,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
       <div className={classes.paginationContainer}>
         <Pagination
           count={count}
+          page={page}
           variant="outlined"
           shape="rounded"
           className={classes.paginationControls}
