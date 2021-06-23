@@ -20,4 +20,38 @@ export const useStyles = makeStyles((theme) => createStyles({
       fontSize: "13px",
     }
   },
+  detailsContainer: {
+    marginBottom: "20px"
+  },
+  detailsHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "18px",
+    marginBottom: "5px",
+  },
+  detailsHeaderGroup: {
+    
+  }
+  detailsText: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 500,
+    fontSize: "13px",
+  },
+  table: {
+
+  },
+  tableHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "13px",
+    lineHeight: 1
+  },
+  tableData: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 500,
+    fontSize: "13px",
+    textTransform: "uppercase",
+  }
 }));

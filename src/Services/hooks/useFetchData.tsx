@@ -52,13 +52,13 @@ const reducer = (state: FetchState, action: ActionType): FetchState => {
   };
 };
 
-const useFetchData = (fetchType: string | undefined) => {
+const useFetchData = (fetchType: string | undefined, fetchId?: string) => {
   const [data, dispatch] = useReducer(reducer, initialState);
 
-  const setData = (type: string | undefined) => {
+  const setData = (type: string | undefined, id?: string) => {
     axios({
       method: 'GET',
-      url: `https://api.spacexdata.com/v4/${type}`
+      url: `https://api.spacexdata.com/v4/${type}${id ? `/${id}` : ''}`
     }).then(data => {
       dispatch({
         type: 'success',
@@ -75,7 +75,7 @@ const useFetchData = (fetchType: string | undefined) => {
 
   const getData = () => {
     dispatch({ type: 'fetching' });
-    setData(fetchType);
+    setData(fetchType, fetchId);
   };
 
   const hookReturn: HookReturn = [data, getData];

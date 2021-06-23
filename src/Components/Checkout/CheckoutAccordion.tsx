@@ -19,7 +19,7 @@ interface CheckoutAccordionProps {
   category: string;
 }
 
-const useStyles = makeStyles(theme => createStyles({
+const useStyles = makeStyles((theme) => createStyles({
   accordionContainer: {
     padding: "0px 30px 30px 30px",
     "@media (max-width: 600px)": {
@@ -227,7 +227,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
               onChange={handleChange(`panel${index}`)}
               TransitionProps={{ unmountOnExit: true }}
             >
-              <AccordionSummary expandIcon={<ExpandMore />}>
+              <AccordionSummary expandIcon={<ExpandMore fontSize={isMobile ? "large": "default"} />}>
                 <DataRenderer category={category} type="summary" details={item} />
               </AccordionSummary>
               <AccordionDetails>

@@ -1,16 +1,70 @@
 import React from 'react';
+import { 
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Grid,
+} from '@material-ui/core';
+import { useStyles } from '../DataRendererStyles';
+import Core from './Core';
 
 interface DetailsProps {
   details?: any;
 }
 
 const Details = ({ details }: DetailsProps) => {
-  const {} = details;
+  const classes = useStyles();
+  const {
+    details: _details,
+    fairings,
+    cores,
+  } = details;
 
   console.log(details)
 
   return (
-    <h1>Details</h1>
+    <Grid container spacing={2}>
+      {_details && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Details</div>
+          <div className={classes.detailsText}>{_details}</div>
+        </Grid>
+      )}
+      {fairings && (
+        <Grid item xs={4}>
+          <div className={classes.detailsHeader}>Fairings</div>
+          <TableContainer component={Paper} className={classes.table}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell className={classes.tableHeader}>RECOVERED</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings.recovered}`}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className={classes.tableHeader}>RECOVERY ATTEMPT</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings.recovery_attempt}`}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className={classes.tableHeader}>REUSED</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings.reused}`}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      )}
+      {cores.length && (
+        <Grid item xs={12}>
+          <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
+          <div className={classes.detailsHeaderGroup}>Core 1</div>
+          <Core core={cores[0]} />
+        </Grid>
+      )}
+    </Grid>
   );
 };
 
