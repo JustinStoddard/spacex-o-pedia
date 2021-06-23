@@ -14,8 +14,6 @@ const Summary = ({ details }: SummaryProps) => {
   const { name, date_local, upcoming, success } = details;
   const time = moment(date_local).format('LLL');
 
-  console.log(details)
-
   return (
     <Grid container spacing={1} className={classes.summaryGrid}>
       <Grid item xs={12} sm={3}>

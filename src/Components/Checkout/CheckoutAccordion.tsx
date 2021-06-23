@@ -127,6 +127,7 @@ const useStyles = makeStyles(theme => createStyles({
     fontFamily: theme.appDrawer.fonts.primary,
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
+    appearance: "none",
     "@media (max-width: 600px)": {
       marginBottom: "30px",
       width: "100%"

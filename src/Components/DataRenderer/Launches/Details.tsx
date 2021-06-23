@@ -6,6 +6,9 @@ interface DetailsProps {
 
 const Details = ({ details }: DetailsProps) => {
   const {} = details;
+
+  console.log(details)
+
   return (
     <h1>Details</h1>
   );
