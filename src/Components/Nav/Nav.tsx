@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => createStyles({
     width: "100%",
     height: "70px",
     display: "flex",
+    position: "fixed",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "30px 30px 30px 10px",
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => createStyles({
     borderLeft: "1px solid #fff",
     borderBottom: "1px solid #fff",
     borderBottomRightRadius: "5px",
+    zIndex: 5,
     "@media (max-width: 600px)": {
       padding: "15px 15px 15px 0px",
     }

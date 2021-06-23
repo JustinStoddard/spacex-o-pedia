@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import {
   makeStyles,
   createStyles,
@@ -49,7 +49,6 @@ const useStyles = makeStyles(theme => createStyles({
 
 const Checkout = ({}: CheckoutProps) => {
   const classes = useStyles();
-  const history = useHistory();
   const params = useParams<ParamTypes>();
   const category = params?.category ?? "";
   const [{ isFetching, isSuccessful, errorMessage, result }, getData] = useFetchData(category);
@@ -63,8 +62,6 @@ const Checkout = ({}: CheckoutProps) => {
       mounted = false;
     };
   }, []);
-
-  console.log(result)
 
   return (
     <Grid container>

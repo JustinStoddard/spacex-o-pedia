@@ -9,6 +9,7 @@ import { useHistory } from 'react-router';
 const useStyles = makeStyles(theme => createStyles({
   landingPageContainer: {
     padding: "30px",
+    marginTop: "70px",
     "@media (max-width: 600px)": {
       padding: "25px 15px"
     }
@@ -58,7 +59,7 @@ const useStyles = makeStyles(theme => createStyles({
     maxWidth: "450px",
     cursor: "pointer",
     transition: "0.3s",
-      transform: "translate(0px, 0px)",
+    transform: "translate(0px, 0px)",
     "@media (max-width: 600px)": {
       padding: "15px",
       marginBottom: "15px"
@@ -74,7 +75,28 @@ const useStyles = makeStyles(theme => createStyles({
     fontSize: "15px",
     fontWeight: 500,
     fontFamily: theme.appDrawer.fonts.primary,
-  }
+  },
+  optionCardContainerDisabled: {
+    background: "#000",
+    width: "100%",
+    padding: "10px",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    borderLeft: "1px solid #fff",
+    borderBottom: "1px solid #fff",
+    borderRight: "0px",
+    borderTop: "0px",
+    borderRadius: "5px",
+    marginBottom: "30px",
+    maxWidth: "450px",
+    cursor: "not-allowed",
+    transition: "0.3s",
+    transform: "translate(0px, 0px)",
+    opacity: "0.5",
+    "@media (max-width: 600px)": {
+      padding: "15px",
+      marginBottom: "15px"
+    },
+  },
 }));
 
 const LandingPage = () => {
@@ -83,43 +105,56 @@ const LandingPage = () => {
 
   const options = [
     {
-      name: "Launches"
+      name: "Launches",
+      disabled: false,
     },
     {
-      name: "Rockets"
+      name: "Rockets",
+      disabled: true,
     },
     {
       name: "Cores",
+      disabled: true,
     },
     {
-      name: "Missions"
+      name: "Missions",
+      disabled: true,
     },
     {
-      name: "Payloads"
+      name: "Payloads",
+      disabled: true,
     },
     {
       name: "Capsules",
+      disabled: true,
     },
     {
-      name: "Dragons"
+      name: "Dragons",
+      disabled: true,
     },
     {
-      name: "Ships"
+      name: "Ships",
+      disabled: true,
     },
     {
-      name: "Landing Pads"
+      name: "Landing Pads",
+      disabled: true,
     },
     {
-      name: "Launch Pads"
+      name: "Launch Pads",
+      disabled: true,
     },
     {
-      name: "History"
+      name: "History",
+      disabled: true,
     },
     {
-      name: "Info"
+      name: "Info",
+      disabled: true,
     },
     {
-      name: "Roadster"
+      name: "Roadster",
+      disabled: true,
     },
   ];
 
@@ -127,12 +162,22 @@ const LandingPage = () => {
     <div className={classes.landingPageContainer}>
       <div className={classes.landingPageWelcomeBoxContainer}>
         <div className={classes.landingPageWelcomeBoxHeader}>Welcome Explorer!</div>
-        <div className={classes.landingPageWelcomeBoxDescription}>This is the SPACEXopedia! A place for all curious eyes to get an even closer look at SpaceX's rocket launches. Expect to find all sorts of data, even telemetry!</div>
+        <div className={classes.landingPageWelcomeBoxDescription}>This is the SPACEXopedia! A place for all curious eyes to get an even closer look at all things SpaceX! Expect to find all sorts of data! Like info on specific launches, telemetry data, and payloads! Enjoy!</div>
       </div>
       <Grid container spacing={3} className={classes.optionsContainer}>
         {options.map((option, index) => {
           const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
+          if (option.disabled) return (
+            <Grid item key={index}>
+              <button
+                type="button"
+                className={classes.optionCardContainerDisabled}
+              >
+                <div className={classes.optionCardText}>{option.name}</div>
+              </button>
+            </Grid>
+          );
           return (
             <Grid item key={index}>
               <button
