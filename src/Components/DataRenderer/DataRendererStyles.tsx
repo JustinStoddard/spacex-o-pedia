@@ -32,7 +32,7 @@ export const useStyles = makeStyles((theme) => createStyles({
   },
   detailsHeaderGroup: {
     
-  }
+  },
   detailsText: {
     fontFamily: theme.appDrawer.fonts.primary,
     fontWeight: 500,
