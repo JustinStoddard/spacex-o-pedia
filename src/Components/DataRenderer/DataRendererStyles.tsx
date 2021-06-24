@@ -48,7 +48,10 @@ export const useStyles = makeStyles((theme) => createStyles({
   table: {
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
-    marginLeft: "8px"
+    marginLeft: "8px",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
   },
   tableRow: {
     borderBottom: "2px solid #000",
@@ -87,6 +90,9 @@ export const useStyles = makeStyles((theme) => createStyles({
     flexDirection: "column",
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
-    marginLeft: "8px"
+    marginLeft: "8px",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
   }
 }));

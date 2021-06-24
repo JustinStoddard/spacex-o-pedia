@@ -26,6 +26,15 @@ const useStyles = makeStyles((theme) => createStyles({
       padding: "0px 15px 15px 15px",
     }
   },
+  accordion: {
+    boxShadow: "-8px 8px 0px -1px #000000",
+    borderRadius: "5px",
+    border: "2px solid #000",
+    margin: "15px 0px",
+  },
+  first: {
+    marginTop: "0px"
+  },
   accordionExpandIcon: {
     color: "#000"
   },
@@ -56,7 +65,7 @@ const useStyles = makeStyles((theme) => createStyles({
   checkoutHeader: {
     background: "#000",
     width: "100%",
-    padding: "10px",
+    padding: "15px",
     boxShadow: "-8px 8px 0px -1px #000000",
     borderLeft: "1px solid #fff",
     borderBottom: "1px solid #fff",
@@ -68,9 +77,6 @@ const useStyles = makeStyles((theme) => createStyles({
     alignItems: "center",
     transition: "0.3s",
     transform: "translate(0px, 0px)",
-    "@media (max-width: 600px)": {
-      padding: "15px",
-    },
   },
   checkoutCardText: {
     color: "#fff",
@@ -229,6 +235,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
               expanded={expanded === `panel${index}`}
               onChange={handleChange(`panel${index}`)}
               TransitionProps={{ unmountOnExit: true }}
+              className={`${classes.accordion} ${index === 0 ? classes.first : ""}`}
             >
               <AccordionSummary expandIcon={<ExpandMore fontSize={isMobile ? "large": "default"} color="inherit" className={classes.accordionExpandIcon} />}>
                 <DataRenderer category={category} type="summary" details={item} />
