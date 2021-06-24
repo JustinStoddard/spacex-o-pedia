@@ -79,6 +79,14 @@ export const useStyles = makeStyles((theme) => createStyles({
     fontSize: "13px",
     lineHeight: 1
   },
+  paperImageHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "13px",
+    lineHeight: 1,
+    marginTop: "15px"
+  },
   paperData: {
     fontFamily: theme.appDrawer.fonts.primary,
     fontWeight: 500,
@@ -94,6 +102,36 @@ export const useStyles = makeStyles((theme) => createStyles({
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
     marginLeft: "8px",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
+  },
+  image: {
+    height: "100%"
+  },
+  imageContainer: {
+    height: "200px",
+    "@media (max-width: 600px)": {
+      height: "170px",
+    }
+  },
+  imagePaper: {
+    maxWidth: "150px",
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "space-between",
+    flexDirection: "column",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    marginLeft: "8px",
+    transition: "0.3s",
+    transform: "translate(0px, 0px)",
+    "&:hover": {
+      transition: "0.3s",
+      transform: "translate(5px, -5px)",
+      boxShadow: "-13px 13px 0px 0px #000000",
+    },
     "@media (max-width: 600px)": {
       marginLeft: "0px",
     }

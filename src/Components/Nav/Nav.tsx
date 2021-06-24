@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => createStyles({
     alignItems: "center",
     padding: "30px 30px 30px 10px",
     boxShadow: "-8px 8px 0px -1px #000000",
-    borderLeft: "1px solid #fff",
-    borderBottom: "1px solid #fff",
+    borderLeft: "2px solid #fff",
+    borderBottom: "2px solid #fff",
     borderBottomRightRadius: "5px",
     zIndex: 5,
     "@media (max-width: 600px)": {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => createStyles({
     justifyContent: "center",
     alignItems: "center",
     width: "70px",
-    height: "69px",
+    height: "68px",
     position: "relative",
     overflow: "hidden"
   },

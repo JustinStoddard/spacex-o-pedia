@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core';
 import { useStyles } from '../DataRendererStyles';
 import Core from './Core';
+import Capsule from './Capsule';
+import Crew from './Crew';
 
 interface DetailsProps {
   details?: any;
@@ -22,6 +24,8 @@ const Details = ({ details }: DetailsProps) => {
     details: _details,
     fairings,
     cores,
+    capsules,
+    crew,
   } = details;
 
   console.log(details)
@@ -57,7 +61,23 @@ const Details = ({ details }: DetailsProps) => {
           </TableContainer>
         </Grid>
       )}
-      {cores.length && (
+      {crew.length > 0 && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Crew [{crew.length}]</div>
+          <Grid container spacing={2}>
+            {crew.map((item: string) => {
+              return <Crew key={item} crew={item} />;
+            })}
+          </Grid>
+        </Grid>
+      )}
+      {capsules.length > 0 && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Capsules</div>
+          <Capsule capsule={capsules[0]} />
+        </Grid>
+      )}
+      {cores.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
           <div className={classes.detailsHeaderGroup}>Core 1</div>
