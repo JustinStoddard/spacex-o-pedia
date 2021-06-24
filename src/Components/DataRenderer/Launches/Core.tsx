@@ -43,69 +43,77 @@ const Core = ({ core }: CoresProps) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <TableContainer component={Paper} className={classes.table}>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>FLIGHT</TableCell>
-                <TableCell align="right" className={classes.tableData}>{flight ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>LANDING SUCCESS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${landing_success ?? "..."}`}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>REUSED</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${reused ?? "..."}`}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>LEGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${legs ?? "..."}`}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>GRIDFINS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${gridfins ?? "..."}`}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>LANDING TYPE</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${landing_type ?? "..."}`}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>SERIAL</div>
+          <div className={classes.paperData}>{result?.serial ?? "N/A"}</div>
+        </Paper>
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <TableContainer component={Paper} className={classes.table}>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>SERIAL</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.serial ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>LAST UPDATE</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.last_update ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>STATUS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.status ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>REUSE COUNT</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.reuse_count ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>RTLS LANDINGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.rtls_landings ?? "..."}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>ASDS LANDINGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{result?.asds_landings ?? "..."}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>LANDING SUCCESS</div>
+          <div className={classes.paperData}>{`${landing_success ?? "N/A"}`}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>REUSED</div>
+          <div className={classes.paperData}>{`${reused ?? "N/A"}`}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>NUM OF FLIGHTS</div>
+          <div className={classes.paperData}>{flight ?? "N/A"}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>STATUS</div>
+          <div className={classes.paperData}>{result?.status ?? "N/A"}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>LANDING TYPE</div>
+          <div className={classes.paperData}>{`${landing_type ?? "N/A"}`}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>LAST UPDATE</div>
+          <div className={classes.paperData}>{result?.last_update ?? "N/A"}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>LEGS</div>
+          <div className={classes.paperData}>{`${legs ?? "N/A"}`}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>GRIDFINS</div>
+          <div className={classes.paperData}>{`${gridfins ?? "N/A"}`}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>REUSE COUNT</div>
+          <div className={classes.paperData}>{result?.reuse_count ?? "N/A"}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>RTLS LANDINGS</div>
+          <div className={classes.paperData}>{result?.rtls_landings ?? "N/A"}</div>
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <div className={classes.paperHeader}>ASDS LANDINGS</div>
+          <div className={classes.paperData}>{result?.asds_landings ?? "N/A"}</div>
+        </Paper>
       </Grid>
     </Grid>
   );

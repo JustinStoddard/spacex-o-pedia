@@ -31,15 +31,27 @@ export const useStyles = makeStyles((theme) => createStyles({
     marginBottom: "5px",
   },
   detailsHeaderGroup: {
-    
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "15px",
+    marginBottom: "5px",
   },
   detailsText: {
     fontFamily: theme.appDrawer.fonts.primary,
     fontWeight: 500,
     fontSize: "13px",
   },
+  detailsPaper: {
+    padding: "15px"
+  },
   table: {
-
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    marginLeft: "8px"
+  },
+  tableRow: {
+    borderBottom: "2px solid #000",
   },
   tableHeader: {
     fontFamily: theme.appDrawer.fonts.primary,
@@ -53,5 +65,28 @@ export const useStyles = makeStyles((theme) => createStyles({
     fontWeight: 500,
     fontSize: "13px",
     textTransform: "uppercase",
+  },
+  paperHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "13px",
+    lineHeight: 1
+  },
+  paperData: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 500,
+    fontSize: "11px",
+    textTransform: "uppercase",
+  },
+  paper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "space-between",
+    padding: "15px",
+    flexDirection: "column",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    marginLeft: "8px"
   }
 }));

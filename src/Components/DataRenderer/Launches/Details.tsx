@@ -35,22 +35,22 @@ const Details = ({ details }: DetailsProps) => {
         </Grid>
       )}
       {fairings && (
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Fairings</div>
           <TableContainer component={Paper} className={classes.table}>
             <Table>
               <TableBody>
-                <TableRow>
+                <TableRow className={classes.tableRow}>
                   <TableCell className={classes.tableHeader}>RECOVERED</TableCell>
-                  <TableCell align="right" className={classes.tableData}>{`${fairings.recovered}`}</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings?.recovered ?? "N/A"}`}</TableCell>
                 </TableRow>
-                <TableRow>
+                <TableRow className={classes.tableRow}>
                   <TableCell className={classes.tableHeader}>RECOVERY ATTEMPT</TableCell>
-                  <TableCell align="right" className={classes.tableData}>{`${fairings.recovery_attempt}`}</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings?.recovery_attempt ?? "N/A"}`}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell className={classes.tableHeader}>REUSED</TableCell>
-                  <TableCell align="right" className={classes.tableData}>{`${fairings.reused}`}</TableCell>
+                  <TableCell align="right" className={classes.tableData}>{`${fairings?.reused ?? "N/A"}`}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -58,10 +58,22 @@ const Details = ({ details }: DetailsProps) => {
         </Grid>
       )}
       {cores.length && (
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
           <div className={classes.detailsHeaderGroup}>Core 1</div>
           <Core core={cores[0]} />
+          {cores.length > 1 && (
+            <>
+              <div className={classes.detailsHeaderGroup}>Core 2</div>
+              <Core core={cores[1]} />
+            </>
+          )}
+          {cores.length > 2 && (
+            <>
+              <div className={classes.detailsHeaderGroup}>Core 3</div>
+              <Core core={cores[2]} />
+            </>
+          )}
         </Grid>
       )}
     </Grid>
