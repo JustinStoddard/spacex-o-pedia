@@ -64,12 +64,14 @@ const Details = ({ details }: DetailsProps) => {
           <Core core={cores[0]} />
           {cores.length > 1 && (
             <>
+              <div className={classes.dividerHidden} />
               <div className={classes.detailsHeaderGroup}>Core 2</div>
               <Core core={cores[1]} />
             </>
           )}
           {cores.length > 2 && (
             <>
+              <div className={classes.dividerHidden} />
               <div className={classes.detailsHeaderGroup}>Core 3</div>
               <Core core={cores[2]} />
             </>

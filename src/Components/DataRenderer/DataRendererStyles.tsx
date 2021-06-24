@@ -35,7 +35,10 @@ export const useStyles = makeStyles((theme) => createStyles({
     fontWeight: 700,
     textTransform: "uppercase",
     fontSize: "15px",
-    marginBottom: "5px",
+    margin: "10px 0px",
+  },
+  dividerHidden: {
+    marginBottom: "30px"
   },
   detailsText: {
     fontFamily: theme.appDrawer.fonts.primary,
