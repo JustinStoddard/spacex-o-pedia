@@ -28,14 +28,6 @@ const Core = ({ core }: CoresProps) => {
     flight,
   } = core;
   const [{ result }, getData] = useFetchData("cores", _core);
-  const {
-    serial,
-    last_update,
-    status,
-    reuse_count,
-    rtls_landings,
-    asds_landings,
-  } = result;
 
   useEffect(() => {
     let mounted = true;
@@ -57,27 +49,27 @@ const Core = ({ core }: CoresProps) => {
             <TableBody>
               <TableRow>
                 <TableCell className={classes.tableHeader}>FLIGHT</TableCell>
-                <TableCell align="right" className={classes.tableData}>{flight}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{flight ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>LANDING SUCCESS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${landing_success}`}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{`${landing_success ?? "..."}`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>REUSED</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${reused}`}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{`${reused ?? "..."}`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>LEGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${legs}`}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{`${legs ?? "..."}`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>GRIDFINS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${gridfins}`}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{`${gridfins ?? "..."}`}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>LANDING TYPE</TableCell>
-                <TableCell align="right" className={classes.tableData}>{`${landing_type}`}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{`${landing_type ?? "..."}`}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -89,27 +81,27 @@ const Core = ({ core }: CoresProps) => {
             <TableBody>
               <TableRow>
                 <TableCell className={classes.tableHeader}>SERIAL</TableCell>
-                <TableCell align="right" className={classes.tableData}>{serial}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.serial ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>LAST UPDATE</TableCell>
-                <TableCell align="right" className={classes.tableData}>{last_update}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.last_update ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>STATUS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{status}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.status ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>REUSE COUNT</TableCell>
-                <TableCell align="right" className={classes.tableData}>{reuse_count}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.reuse_count ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>RTLS LANDINGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{rtls_landings}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.rtls_landings ?? "..."}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className={classes.tableHeader}>ASDS LANDINGS</TableCell>
-                <TableCell align="right" className={classes.tableData}>{asds_landings}</TableCell>
+                <TableCell align="right" className={classes.tableData}>{result?.asds_landings ?? "..."}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
