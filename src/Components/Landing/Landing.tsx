@@ -162,7 +162,7 @@ const LandingPage = () => {
     <div className={classes.landingPageContainer}>
       <div className={classes.landingPageWelcomeBoxContainer}>
         <div className={classes.landingPageWelcomeBoxHeader}>Welcome Explorer!</div>
-        <div className={classes.landingPageWelcomeBoxDescription}>This is the SPACEXopedia! A place for all curious eyes to get an even closer look at all things SpaceX! Expect to find all sorts of data! Like info on specific launches, telemetry data, and payloads! Enjoy!</div>
+        <div className={classes.landingPageWelcomeBoxDescription}>This is the spacexopedia! A place for all curious eyes to get an even closer look at all things SpaceX! Expect to find all sorts of data! Info on specific launches, telemetry, payloads and more! Enjoy!</div>
       </div>
       <Grid container spacing={3} className={classes.optionsContainer}>
         {options.map((option, index) => {
