@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => createStyles({
       padding: "0px 15px 15px 15px",
     }
   },
+  accordionExpandIcon: {
+    color: "#000"
+  },
   checkoutBackButton: {
     background: "#000",
     padding: "10px",
@@ -227,7 +230,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
               onChange={handleChange(`panel${index}`)}
               TransitionProps={{ unmountOnExit: true }}
             >
-              <AccordionSummary expandIcon={<ExpandMore fontSize={isMobile ? "large": "default"} />}>
+              <AccordionSummary expandIcon={<ExpandMore fontSize={isMobile ? "large": "default"} color="inherit" className={classes.accordionExpandIcon} />}>
                 <DataRenderer category={category} type="summary" details={item} />
               </AccordionSummary>
               <AccordionDetails>
