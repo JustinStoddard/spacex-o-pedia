@@ -13,6 +13,7 @@ import { useStyles } from '../DataRendererStyles';
 import Core from './Core';
 import Capsule from './Capsule';
 import Crew from './Crew';
+import Payload from './Payload';
 
 interface DetailsProps {
   details?: any;
@@ -26,6 +27,7 @@ const Details = ({ details }: DetailsProps) => {
     cores,
     capsules,
     crew,
+    payloads,
   } = details;
 
   console.log(details)
@@ -80,22 +82,29 @@ const Details = ({ details }: DetailsProps) => {
       {cores.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
-          <div className={classes.detailsHeaderGroup}>Core 1</div>
-          <Core core={cores[0]} />
-          {cores.length > 1 && (
-            <>
-              <div className={classes.dividerHidden} />
-              <div className={classes.detailsHeaderGroup}>Core 2</div>
-              <Core core={cores[1]} />
-            </>
-          )}
-          {cores.length > 2 && (
-            <>
-              <div className={classes.dividerHidden} />
-              <div className={classes.detailsHeaderGroup}>Core 3</div>
-              <Core core={cores[2]} />
-            </>
-          )}
+          {cores.map((item: string, index: number) => {
+            return (
+              <div key={item}>
+                {index !== 0 && <div className={classes.dividerHidden} />}
+                <div className={classes.detailsHeaderGroup}>Core {index + 1}</div>
+                <Core core={item} />
+              </div>
+            );
+          })}
+        </Grid>
+      )}
+      {payloads.length > 0 && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Payloads [{payloads.length}]</div>
+          {payloads.map((item: string, index: number) => {
+            return (
+              <div key={item}>
+                {index !== 0 && <div className={classes.dividerHidden} />}
+                <div className={classes.detailsHeaderGroup}>Payload {index + 1}</div>
+                <Payload payload={item} />
+              </div>
+            );
+          })}
         </Grid>
       )}
     </Grid>

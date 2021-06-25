@@ -107,16 +107,21 @@ export const useStyles = makeStyles((theme) => createStyles({
     }
   },
   image: {
-    height: "100%"
+    width: "100%"
   },
   imageContainer: {
-    height: "200px",
+    height: "160px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#000",
     "@media (max-width: 600px)": {
       height: "170px",
     }
   },
   imagePaper: {
-    maxWidth: "150px",
+    maxWidth: "140px",
+    minWidth: "140px",
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",
