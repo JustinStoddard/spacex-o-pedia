@@ -14,6 +14,7 @@ import Core from './Core';
 import Capsule from './Capsule';
 import Crew from './Crew';
 import Payload from './Payload';
+import LaunchPad from './LaunchPad';
 
 interface DetailsProps {
   details?: any;
@@ -79,6 +80,20 @@ const Details = ({ details }: DetailsProps) => {
           <Capsule capsule={capsules[0]} />
         </Grid>
       )}
+      {payloads.length > 0 && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Payloads [{payloads.length}]</div>
+          {payloads.map((item: any, index: number) => {
+            return (
+              <div key={item.name}>
+                {index !== 0 && <div className={classes.dividerHidden} />}
+                <div className={classes.detailsHeaderGroup}>Payload {index + 1}</div>
+                <Payload payload={item} />
+              </div>
+            );
+          })}
+        </Grid>
+      )}
       {cores.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
@@ -88,20 +103,6 @@ const Details = ({ details }: DetailsProps) => {
                 {index !== 0 && <div className={classes.dividerHidden} />}
                 <div className={classes.detailsHeaderGroup}>Core {index + 1}</div>
                 <Core core={item} />
-              </div>
-            );
-          })}
-        </Grid>
-      )}
-      {payloads.length > 0 && (
-        <Grid item xs={12} className={classes.detailsContainer}>
-          <div className={classes.detailsHeader}>Payloads [{payloads.length}]</div>
-          {payloads.map((item: string, index: number) => {
-            return (
-              <div key={item}>
-                {index !== 0 && <div className={classes.dividerHidden} />}
-                <div className={classes.detailsHeaderGroup}>Payload {index + 1}</div>
-                <Payload payload={item} />
               </div>
             );
           })}
