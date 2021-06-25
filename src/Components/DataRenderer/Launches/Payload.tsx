@@ -59,7 +59,7 @@ const Payload = ({ payload }: PayloadProps) => {
           </Paper>
         </Grid>
       )}
-      {(result?.mass_kg !== null &&  result?.mass_lbs !== null) && (
+      {(result?.mass_kg !== null && result?.mass_lbs !== null) && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>MASS LAUNCHED</div>
