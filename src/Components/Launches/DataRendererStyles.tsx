@@ -38,6 +38,10 @@ export const useStyles = makeStyles((theme) => createStyles({
       width: "100%",
     }
   },
+  noPatch: {
+    color: "#000",
+    fontSize: "40px"
+  },
   summaryPatch: {
     height: "100%"
   },

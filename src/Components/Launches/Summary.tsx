@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Grid
 } from '@material-ui/core';
+import { BrokenImageOutlined } from '@material-ui/icons';
 import { useStyles } from './DataRendererStyles';
 import moment from 'moment';
 
@@ -16,17 +17,19 @@ const Summary = ({ details }: SummaryProps) => {
 
   return (
     <Grid container spacing={1} className={classes.summaryGrid}>
-      {links?.patch?.small && (
-        <Grid item xs={12} sm={1}>
-          <div className={classes.summaryPatchContainer}>
+      <Grid item xs={12} sm={1}>
+        <div className={classes.summaryPatchContainer}>
+          {links?.patch?.small ? (
             <img
               src={links?.patch?.small}
               alt={name}
               className={classes.summaryPatch}
             />
-          </div>
-        </Grid>
-      )}
+          ) : (
+            <BrokenImageOutlined fontSize="inherit" color="inherit" className={classes.noPatch} />
+          )}
+        </div>
+      </Grid>
       <Grid item xs={12} sm={3}>
         <div>
           <div className={classes.summaryHeaderLabel}>name</div>
