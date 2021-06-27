@@ -113,7 +113,8 @@ export const useStyles = makeStyles((theme) => createStyles({
     width: "100%"
   },
   imageContainer: {
-    height: "160px",
+    height: "0px",
+    overflow: "hidden",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -122,13 +123,18 @@ export const useStyles = makeStyles((theme) => createStyles({
       height: "170px",
     }
   },
+  imageLoaded: {
+    height: "160px",
+  },
   imagePaper: {
+    background: "#000",
     maxWidth: "140px",
     minWidth: "140px",
+    height: "160px",
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",
-    alignItems: "space-between",
+    alignItems: "center",
     flexDirection: "column",
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
@@ -144,10 +150,17 @@ export const useStyles = makeStyles((theme) => createStyles({
       marginLeft: "0px",
     }
   },
+  imageWhiteLoader: {
+    color: "#fff",
+  },
+  loaderBlack: {
+    color: "#000"
+  },
   bigImageContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "column",
     minHeight: "400px",
     maxHeight: "400px",
     overflow: "hidden",
@@ -161,11 +174,15 @@ export const useStyles = makeStyles((theme) => createStyles({
     }
   },
   bigImage: {
+    height: "0px",
     width: "100%",
     "@media (max-width: 600px)": {
       height: "400px",
       width: "unset"
     }
+  },
+  bigImageLoaded: {
+    height: "unset"
   },
   mapContainer: {
     width: "100%",

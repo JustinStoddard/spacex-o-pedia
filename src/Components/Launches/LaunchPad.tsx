@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import {
   Paper,
   Grid,
+  CircularProgress,
   useMediaQuery,
 } from '@material-ui/core';
 import MapBoxGl from "mapbox-gl";
@@ -15,8 +16,9 @@ interface LaunchProps {
 const LaunchPad = ({ launchpad }: LaunchProps) => {
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const [{ result }, getData] = useFetchData("launchpads", launchpad);
+  const [{ isFetching, result }, getData] = useFetchData("launchpads", launchpad);
   const [mapRef, setMapRef] = useState<any>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -126,6 +128,16 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
     mapRef.scrollZoom.disable();
   }, [mapRef]);
 
+
+  if (isFetching) {
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+        </Grid>
+      </Grid>
+    );
+  }
   return (
     <Grid container spacing={2}>
       {result?.name !== null && (
@@ -192,21 +204,33 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
           </Paper>
         </Grid>
       )}
-      <Grid item xs={12} sm={6}>
-        <div className={classes.bigImageContainer}>
-          <img src={result?.images?.large[0]} alt={result?.name} className={classes.bigImage} />
-        </div>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <div className={classes.mapContainer}>
-          <div
-            id="launch-pad-map"
-            className={classes.map}
-            onFocus={() => onFocusEvent()}
-            onBlur={() => onBlurEvent()}
-          />
-        </div>
-      </Grid>
+      {result?.images?.large.length > 0 && (
+        <Grid item xs={12} sm={6}>
+          <div className={classes.bigImageContainer}>
+            <img
+              src={result?.images?.large[0]}
+              alt={result?.name}
+              className={`${classes.bigImage} ${imageLoaded ? classes.bigImageLoaded : ""}`}
+              onLoad={() => setImageLoaded(true)}
+            />
+            {!imageLoaded && (
+              <CircularProgress size={20} thickness={6} color="inherit" className={classes.imageWhiteLoader} />
+            )}
+          </div>
+        </Grid>
+      )}
+      {(result?.longitude && result?.latitude) && (
+        <Grid item xs={12} sm={6}>
+          <div className={classes.mapContainer}>
+            <div
+              id="launch-pad-map"
+              className={classes.map}
+              onFocus={() => onFocusEvent()}
+              onBlur={() => onBlurEvent()}
+            />
+          </div>
+        </Grid>
+      )}
     </Grid>
   );
 };

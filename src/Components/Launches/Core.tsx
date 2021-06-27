@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 import { 
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Paper,
   Grid,
+  CircularProgress,
 } from '@material-ui/core';
 import { useStyles } from './DataRendererStyles';
 import useFetchData from '../../Services/hooks/useFetchData';
@@ -27,7 +22,7 @@ const Core = ({ core }: CoresProps) => {
     gridfins,
     flight,
   } = core;
-  const [{ result }, getData] = useFetchData("cores", _core);
+  const [{ isFetching, result }, getData] = useFetchData("cores", _core);
 
   useEffect(() => {
     let mounted = true;
@@ -39,6 +34,15 @@ const Core = ({ core }: CoresProps) => {
     }
   }, []);
 
+  if (isFetching) {
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+        </Grid>
+      </Grid>
+    );
+  }
   return (
     <Grid container spacing={2}>
       {result?.serial !== null && (

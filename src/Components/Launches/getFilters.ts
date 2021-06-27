@@ -40,6 +40,15 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
         }
       });
       break;
+    case "resupply":
+    newResults = newResults.filter((key: string) => {
+      const item = result[key];
+  
+      if (item.name.toLowerCase().match("crs")) {
+        return key;
+      }
+    });
+    break;
     case "spaceforce":
       newResults = newResults.filter((key: string) => {
         const item = result[key];

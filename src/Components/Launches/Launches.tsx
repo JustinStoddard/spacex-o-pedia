@@ -52,8 +52,6 @@ const Launches = ({}: LaunchesProps) => {
   const [{ isFetching, isSuccessful, errorMessage, result }, getData] = useFetchData("launches");
   const params = useParams<ParamsProps>();
 
-  console.log(params);
-
   useEffect(() => {
     let mounted = true;
 

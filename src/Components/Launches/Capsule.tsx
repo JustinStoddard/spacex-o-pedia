@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Grid,
   Paper,
+  CircularProgress,
 } from '@material-ui/core';
 import { useStyles } from './DataRendererStyles';
 import useFetchData from '../../Services/hooks/useFetchData';
@@ -12,7 +13,7 @@ interface CapsuleProps {
 
 const Capsule = ({ capsule }: CapsuleProps) => {
   const classes = useStyles();
-  const [{ result }, getData] = useFetchData("capsules", capsule);
+  const [{ isFetching, result }, getData] = useFetchData("capsules", capsule);
 
   useEffect(() => {
     let mounted = true;
@@ -24,6 +25,15 @@ const Capsule = ({ capsule }: CapsuleProps) => {
     }
   }, []);
 
+  if (isFetching) {
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+        </Grid>
+      </Grid>
+    );
+  }
   return (
     <Grid container spacing={2}>
       <Grid item>

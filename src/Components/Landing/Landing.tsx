@@ -117,6 +117,10 @@ const LandingPage = () => {
       disabled: false,
     },
     {
+      name: "Resupply",
+      disabled: false,
+    },
+    {
       name: "Spaceforce",
       disabled: false,
     },

@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Paper,
   Grid,
+  CircularProgress,
 } from '@material-ui/core';
 import { useStyles } from './DataRendererStyles';
 import useFetchData from '../../Services/hooks/useFetchData';
@@ -19,7 +14,7 @@ interface PayloadProps {
 
 const Payload = ({ payload }: PayloadProps) => {
   const classes = useStyles();
-  const [{ result }, getData] = useFetchData("payloads", payload);
+  const [{ isFetching, result }, getData] = useFetchData("payloads", payload);
 
   useEffect(() => {
     let mounted = true;
@@ -33,6 +28,15 @@ const Payload = ({ payload }: PayloadProps) => {
 
   const time = moment(result?.epoch).format('LLL');
 
+  if (isFetching) {
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+        </Grid>
+      </Grid>
+    );
+  }
   return (
     <Grid container spacing={2}>
       {result?.name !== null && (
