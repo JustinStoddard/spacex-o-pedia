@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => createStyles({
     padding: "30px",
     marginTop: "70px",
     "@media (max-width: 600px)": {
-      padding: "25px 15px"
+      padding: "25px 15px",
+      marginTop: "55px",
     }
   },
   landingPageWelcomeBoxContainer: {
