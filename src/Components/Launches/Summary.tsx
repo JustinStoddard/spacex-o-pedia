@@ -11,11 +11,22 @@ interface SummaryProps {
 
 const Summary = ({ details }: SummaryProps) => {
   const classes = useStyles();
-  const { name, date_local, upcoming, success } = details;
+  const { name, date_local, upcoming, success, links } = details;
   const time = moment(date_local).format('LLL');
 
   return (
     <Grid container spacing={1} className={classes.summaryGrid}>
+      {links?.patch?.small && (
+        <Grid item xs={12} sm={1}>
+          <div className={classes.summaryPatchContainer}>
+            <img
+              src={links?.patch?.small}
+              alt={name}
+              className={classes.summaryPatch}
+            />
+          </div>
+        </Grid>
+      )}
       <Grid item xs={12} sm={3}>
         <div>
           <div className={classes.summaryHeaderLabel}>name</div>
@@ -28,7 +39,7 @@ const Summary = ({ details }: SummaryProps) => {
           <div className={classes.summaryHeader}>{time}</div>
         </div>
       </Grid>
-      <Grid item xs={12} sm={3}>
+      <Grid item xs={12} sm={2}>
         {upcoming ? (
           <div>
             <div className={classes.summaryHeaderLabel}>upcoming</div>

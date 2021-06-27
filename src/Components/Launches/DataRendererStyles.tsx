@@ -20,8 +20,40 @@ export const useStyles = makeStyles((theme) => createStyles({
       fontSize: "13px",
     }
   },
+  summaryPatchContainer: {
+    height: "40px",
+    width: "40px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  detailsPatchContainer: {
+    height: "200px",
+    width: "200px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "@media (max-width: 600px)": {
+      fontSize: "13px",
+      width: "100%",
+    }
+  },
+  summaryPatch: {
+    height: "100%"
+  },
+  detailsPatch: {
+    height: "0px"
+  },
+  detailsPatchLoaded: {
+    height: "100%"
+  },
   detailsContainer: {
     marginBottom: "20px"
+  },
+  addFlex: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
   },
   detailsHeader: {
     fontFamily: theme.appDrawer.fonts.primary,

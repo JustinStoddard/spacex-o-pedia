@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
   Grid,
+  CircularProgress,
 } from '@material-ui/core';
 import { useStyles } from './DataRendererStyles';
 import Core from './Core';
@@ -30,14 +30,32 @@ const Details = ({ details }: DetailsProps) => {
     crew,
     payloads,
     launchpad,
+    links,
+    name,
   } = details;
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   console.log(details)
 
   return (
     <Grid container spacing={2}>
+      {links?.patch?.small && (
+        <Grid item xs={12} sm={2}>
+          <div className={classes.detailsPatchContainer}>
+            <img
+              src={links?.patch?.small}
+              alt={name}
+              className={`${classes.detailsPatch} ${imageLoaded ? classes.detailsPatchLoaded : ""}`}
+              onLoad={() => setImageLoaded(true)}
+            />
+            {!imageLoaded && (
+              <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+            )}
+          </div>
+        </Grid>
+      )}
       {_details && (
-        <Grid item xs={12} className={classes.detailsContainer}>
+        <Grid item xs={12} sm={10} className={`${classes.detailsContainer} ${classes.addFlex}`}>
           <div className={classes.detailsHeader}>Details</div>
           <div className={classes.detailsText}>{_details}</div>
         </Grid>
