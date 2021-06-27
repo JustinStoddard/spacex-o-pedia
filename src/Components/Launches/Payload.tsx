@@ -9,8 +9,8 @@ import {
   Paper,
   Grid,
 } from '@material-ui/core';
-import { useStyles } from '../DataRendererStyles';
-import useFetchData from '../../../Services/hooks/useFetchData';
+import { useStyles } from './DataRendererStyles';
+import useFetchData from '../../Services/hooks/useFetchData';
 import moment from 'moment';
 
 interface PayloadProps {

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Grid
 } from '@material-ui/core';
-import { useStyles } from '../DataRendererStyles';
+import { useStyles } from './DataRendererStyles';
 import moment from 'moment';
 
 interface SummaryProps {

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
 import {
   makeStyles,
   createStyles,
@@ -7,15 +6,16 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import { Error } from '@material-ui/icons';
+import { useParams } from 'react-router-dom';
 
 import useFetchData from '../../Services/hooks/useFetchData';
-import CheckoutAccordion from './CheckoutAccordion';
+import LaunchesAccordion from './LaunchesAccordion';
 
-interface CheckoutProps {
+interface LaunchesProps {
 
 };
 
-interface ParamTypes {
+interface ParamsProps {
   category?: string;
 }
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => createStyles({
     color: "#000",
     marginTop: "5px"
   },
-  checkoutLoader: {
+  launchesLoader: {
     color: "#000",
     animationDuration: '1400ms'
   },
@@ -47,11 +47,12 @@ const useStyles = makeStyles(theme => createStyles({
   }
 }));
 
-const Checkout = ({}: CheckoutProps) => {
+const Launches = ({}: LaunchesProps) => {
   const classes = useStyles();
-  const params = useParams<ParamTypes>();
-  const category = params?.category ?? "";
-  const [{ isFetching, isSuccessful, errorMessage, result }, getData] = useFetchData(category);
+  const [{ isFetching, isSuccessful, errorMessage, result }, getData] = useFetchData("launches");
+  const params = useParams<ParamsProps>();
+
+  console.log(params);
 
   useEffect(() => {
     let mounted = true;
@@ -66,7 +67,7 @@ const Checkout = ({}: CheckoutProps) => {
   return (
     <Grid container>
       {isFetching && (
-        <Grid item xs={12} data-testid="checkout-loader">
+        <Grid item xs={12} data-testid="launches-loader">
           <div className={classes.viewContainer}>
             <CircularProgress
               size={35}
@@ -75,28 +76,28 @@ const Checkout = ({}: CheckoutProps) => {
               classes={{
                 circle: classes.circle
               }}
-              className={classes.checkoutLoader}
+              className={classes.launchesLoader}
             />
-            <div className={classes.loaderText}>Loading {category}</div>
+            <div className={classes.loaderText}>Loading {params.category} Launches</div>
           </div>
         </Grid>
       )}
       {errorMessage && (
-        <Grid item xs={12} data-testid="checkout-error">
+        <Grid item xs={12} data-testid="launches-error">
           <div className={classes.viewContainer}>
             <Error fontSize="inherit" color="inherit" className={classes.errorIcon} />
-            <div className={classes.loaderText}>There was an issue fetching {category}</div>
+            <div className={classes.loaderText}>There was an issue fetching Launches</div>
             <div className={classes.loaderText}>{errorMessage}</div>
           </div>
         </Grid>
       )}
       {(isSuccessful && result) && (
-        <Grid item xs={12} data-testid="checkout-success">
-          <CheckoutAccordion result={result} category={category} />
+        <Grid item xs={12} data-testid="launches-success">
+          <LaunchesAccordion result={result} category={params.category} />
         </Grid>
       )}
     </Grid>
   );
 };
 
-export default Checkout;
+export default Launches;

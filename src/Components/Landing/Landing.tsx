@@ -105,56 +105,20 @@ const LandingPage = () => {
 
   const options = [
     {
-      name: "Launches",
+      name: "All",
       disabled: false,
     },
     {
-      name: "Rockets",
-      disabled: true,
+      name: "Crew",
+      disabled: false,
     },
     {
-      name: "Cores",
-      disabled: true,
+      name: "Starlink",
+      disabled: false,
     },
     {
-      name: "Missions",
-      disabled: true,
-    },
-    {
-      name: "Payloads",
-      disabled: true,
-    },
-    {
-      name: "Capsules",
-      disabled: true,
-    },
-    {
-      name: "Dragons",
-      disabled: true,
-    },
-    {
-      name: "Ships",
-      disabled: true,
-    },
-    {
-      name: "Landing Pads",
-      disabled: true,
-    },
-    {
-      name: "Launch Pads",
-      disabled: true,
-    },
-    {
-      name: "History",
-      disabled: true,
-    },
-    {
-      name: "Info",
-      disabled: true,
-    },
-    {
-      name: "Roadster",
-      disabled: true,
+      name: "Spaceforce",
+      disabled: false,
     },
   ];
 
@@ -183,7 +147,7 @@ const LandingPage = () => {
               <button
                 type="button"
                 className={classes.optionCardContainer}
-                onClick={() => history.push(`/checkout/${prettyLinkParam}`)}
+                onClick={() => history.push(`/launches/${prettyLinkParam}`)}
               >
                 <div className={classes.optionCardText}>{option.name}</div>
               </button>

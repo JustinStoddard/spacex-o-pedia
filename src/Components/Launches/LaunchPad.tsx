@@ -5,8 +5,8 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import MapBoxGl from "mapbox-gl";
-import { useStyles } from '../DataRendererStyles';
-import useFetchData from '../../../Services/hooks/useFetchData';
+import { useStyles } from './DataRendererStyles';
+import useFetchData from '../../Services/hooks/useFetchData';
 
 interface LaunchProps {
   launchpad?: string;

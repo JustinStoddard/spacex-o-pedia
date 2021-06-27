@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import LandingPage from './Pages/LandingPage';
 
-const CheckoutPage = lazy(() => import('./Pages/CheckoutPage'));
+const LaunchesPage = lazy(() => import('./Pages/LaunchesPage'));
 const NotFoundView = lazy(() => import('./Components/NotFoundView/NotFoundView'));
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       <Suspense fallback={<h1>loading...</h1>}>
         <Switch>
           <Route exact path='/' component={LandingPage} />
-          <Route exact path="/checkout/:category" component={CheckoutPage} />
+          <Route exact path="/launches/:category" component={LaunchesPage} />
           <Route exact path='/404' component={NotFoundView} />
           <Route path="*">
             <Redirect to='/404' />

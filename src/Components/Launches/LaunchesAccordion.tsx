@@ -11,12 +11,14 @@ import {
 import { Pagination } from '@material-ui/lab';
 import { ExpandMore, ChevronLeft } from '@material-ui/icons';
 import { useHistory } from 'react-router';
-import DataRenderer from '../DataRenderer/DataRenderer';
+
+import LaunchSummary from './Summary';
+import LaunchDetails from './Details';
 import getFilters from './getFilters';
 
-interface CheckoutAccordionProps {
+interface LaunchesAccordionProps {
   result: any;
-  category: string;
+  category?: string;
 }
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -144,7 +146,7 @@ const useStyles = makeStyles((theme) => createStyles({
   },
 }));
 
-const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
+const LaunchesAccordion = ({ result, category }: LaunchesAccordionProps) => {
   const classes = useStyles();
   const results = Object.keys(result).reverse();
   const history = useHistory();
@@ -161,11 +163,12 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
   const generateResults = useCallback(() => {
     let filteredResults = results;
 
-    filteredResults = getFilters({ category, result, filteredResults, searchValue });
+    filteredResults = getFilters({ result, filteredResults, searchValue, category });
 
     let count = Math.round(filteredResults.length / (isMobile ? 3 : 10));
     count = isMobile ? count : count + 1;
 
+    //For pagination
     filteredResults = filteredResults.filter((key: string, index: number) => {
       const startBoundry = pagination[0];
       const endBoundry = pagination[1];
@@ -209,7 +212,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
               <ChevronLeft fontSize="inherit" color="inherit" className={classes.checkoutHeaderIcon} />
             </button>
             <div className={classes.checkoutHeader}>
-              <div className={classes.checkoutCardText}>{category}</div>
+              <div className={classes.checkoutCardText}>{category} Launches</div>
             </div>
           </div>
         </Grid>
@@ -218,7 +221,7 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
             <input
               type="text"
               value={searchValue}
-              placeholder={`Search ${category}`}
+              placeholder={`Search ${category} launches`}
               className={classes.searchInput}
               onChange={(e) => setSearchValue(e.target.value)}
             />
@@ -238,10 +241,10 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
               className={`${classes.accordion} ${index === 0 ? classes.first : ""}`}
             >
               <AccordionSummary expandIcon={<ExpandMore fontSize={isMobile ? "large": "default"} color="inherit" className={classes.accordionExpandIcon} />}>
-                <DataRenderer category={category} type="summary" details={item} />
+                <LaunchSummary details={item} />
               </AccordionSummary>
               <AccordionDetails>
-                <DataRenderer category={category} details={item} />
+                <LaunchDetails details={item} />
               </AccordionDetails>
             </Accordion>
           );
@@ -261,4 +264,4 @@ const CheckoutAccordion = ({ result, category }: CheckoutAccordionProps) => {
   );
 };
 
-export default CheckoutAccordion;
+export default LaunchesAccordion;

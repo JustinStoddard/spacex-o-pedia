@@ -6,9 +6,9 @@ import {
 } from '@material-ui/core';
 
 import Nav from '../Components/Nav/Nav';
-import Checkout from '../Components/Checkout/Checkout';
+import Launches from '../Components/Launches/Launches';
 
-interface CheckoutPageProps {
+interface LaunchesPageProps {
 
 };
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => createStyles({
 
 }));
 
-const CheckoutPage = ({}: CheckoutPageProps) => {
+const LaunchesPage = ({}: LaunchesPageProps) => {
   const classes = useStyles();
 
   return (
@@ -25,10 +25,10 @@ const CheckoutPage = ({}: CheckoutPageProps) => {
         <Nav />
       </Grid>
       <Grid item xs={12}>
-        <Checkout />
+        <Launches />
       </Grid>
     </Grid>
   );
 };
 
-export default CheckoutPage;
+export default LaunchesPage;

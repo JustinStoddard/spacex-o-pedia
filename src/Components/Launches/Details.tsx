@@ -9,7 +9,7 @@ import {
   Paper,
   Grid,
 } from '@material-ui/core';
-import { useStyles } from '../DataRendererStyles';
+import { useStyles } from './DataRendererStyles';
 import Core from './Core';
 import Capsule from './Capsule';
 import Crew from './Crew';
@@ -96,7 +96,7 @@ const Details = ({ details }: DetailsProps) => {
           <div className={classes.detailsHeader}>Payloads [{payloads.length}]</div>
           {payloads.map((item: any, index: number) => {
             return (
-              <div key={item.name}>
+              <div key={index}>
                 {index !== 0 && <div className={classes.dividerHidden} />}
                 <div className={classes.detailsHeaderGroup}>Payload {index + 1}</div>
                 <Payload payload={item} />
@@ -110,7 +110,7 @@ const Details = ({ details }: DetailsProps) => {
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
           {cores.map((item: any, index: number) => {
             return (
-              <div key={item.core}>
+              <div key={index}>
                 {index !== 0 && <div className={classes.dividerHidden} />}
                 <div className={classes.detailsHeaderGroup}>Core {index + 1}</div>
                 <Core core={item} />
