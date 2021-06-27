@@ -39,8 +39,6 @@ const Core = ({ core }: CoresProps) => {
     }
   }, []);
 
-  console.log(result)
-
   return (
     <Grid container spacing={2}>
       {result?.serial !== null && (

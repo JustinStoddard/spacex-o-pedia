@@ -93,6 +93,9 @@ export const useStyles = makeStyles((theme) => createStyles({
     fontSize: "11px",
     textTransform: "uppercase",
   },
+  noTextTransform: {
+    textTransform: "none"
+  },
   paper: {
     display: "flex",
     justifyContent: "center",
@@ -139,6 +142,48 @@ export const useStyles = makeStyles((theme) => createStyles({
     },
     "@media (max-width: 600px)": {
       marginLeft: "0px",
+    }
+  },
+  bigImageContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "400px",
+    maxHeight: "400px",
+    overflow: "hidden",
+    background: "#000",
+    marginLeft: "8px",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    borderRadius: "5px",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
+  },
+  bigImage: {
+    width: "100%",
+    "@media (max-width: 600px)": {
+      height: "400px",
+      width: "unset"
+    }
+  },
+  mapContainer: {
+    width: "100%",
+    minHeight: "400px",
+    maxHeight: "400px",
+    overflow: "hidden",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    borderRadius: "5px",
+    "@media (max-width: 600px)": {
+      height: "350px",
+    }
+  },
+  map: {
+    width: "100%",
+    minHeight: "400px",
+    "@media (max-width: 600px)": {
+      height: "350px",
     }
   }
 }));

@@ -29,6 +29,7 @@ const Details = ({ details }: DetailsProps) => {
     capsules,
     crew,
     payloads,
+    launchpad,
   } = details;
 
   console.log(details)
@@ -41,7 +42,27 @@ const Details = ({ details }: DetailsProps) => {
           <div className={classes.detailsText}>{_details}</div>
         </Grid>
       )}
-      {fairings && (
+      {crew.length > 0 && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Crew [{crew.length}]</div>
+          <Grid container spacing={2}>
+            {crew.map((item: string) => {
+              return (
+                <Grid item key={item}>
+                  <Crew crew={item} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Grid>
+      )}
+      {launchpad !== null && (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Launch Pad</div>
+          <LaunchPad launchpad={launchpad} />
+        </Grid>
+      )}
+      {(fairings?.recovered && fairings?.recovery_attempt && fairings?.reused) && (
         <Grid item xs={12} sm={6} md={4} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Fairings</div>
           <TableContainer component={Paper} className={classes.table}>
@@ -62,16 +83,6 @@ const Details = ({ details }: DetailsProps) => {
               </TableBody>
             </Table>
           </TableContainer>
-        </Grid>
-      )}
-      {crew.length > 0 && (
-        <Grid item xs={12} className={classes.detailsContainer}>
-          <div className={classes.detailsHeader}>Crew [{crew.length}]</div>
-          <Grid container spacing={2}>
-            {crew.map((item: string) => {
-              return <Crew key={item} crew={item} />;
-            })}
-          </Grid>
         </Grid>
       )}
       {capsules.length > 0 && (
@@ -97,9 +108,9 @@ const Details = ({ details }: DetailsProps) => {
       {cores.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Cores [{cores.length}]</div>
-          {cores.map((item: string, index: number) => {
+          {cores.map((item: any, index: number) => {
             return (
-              <div key={item}>
+              <div key={item.core}>
                 {index !== 0 && <div className={classes.dividerHidden} />}
                 <div className={classes.detailsHeaderGroup}>Core {index + 1}</div>
                 <Core core={item} />

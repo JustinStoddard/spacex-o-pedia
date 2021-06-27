@@ -25,7 +25,7 @@ const Crew = ({ crew }: CrewProps) => {
   }, []);
 
   return (
-    <Grid item>
+    <>
       <Paper className={classes.imagePaper}>
         <div className={classes.imageContainer}>
           <a href={result?.wikipedia ?? ""} target="_blank">
@@ -34,7 +34,7 @@ const Crew = ({ crew }: CrewProps) => {
         </div>
       </Paper>
       <div className={classes.paperImageHeader}>{result?.name ?? "N/A"}<br />{result?.agency ?? "N/A"}</div>
-    </Grid>
+    </>
   );
 };
 
