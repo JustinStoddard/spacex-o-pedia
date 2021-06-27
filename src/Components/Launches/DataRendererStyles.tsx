@@ -177,12 +177,12 @@ export const useStyles = makeStyles((theme) => createStyles({
     height: "0px",
     width: "100%",
     "@media (max-width: 600px)": {
-      height: "400px",
+      height: "400px !important",
       width: "unset"
     }
   },
   bigImageLoaded: {
-    height: "unset"
+    height: "inherit"
   },
   mapContainer: {
     width: "100%",
