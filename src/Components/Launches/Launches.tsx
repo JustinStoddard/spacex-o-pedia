@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => createStyles({
     alignItems: "center",
     flexDirection: "column",
     height: "calc(100vh - 70px)",
+    "@media (max-width: 600px)": {
+      height: "calc(100vh - 50px)",
+    }
   },
   loaderText: {
     fontFamily: theme.appDrawer.fonts.primary,

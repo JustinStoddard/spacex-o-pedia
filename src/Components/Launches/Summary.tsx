@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Grid
+  Grid,
+  CircularProgress,
 } from '@material-ui/core';
 import { BrokenImageOutlined } from '@material-ui/icons';
 import { useStyles } from './DataRendererStyles';
@@ -13,6 +14,7 @@ interface SummaryProps {
 const Summary = ({ details }: SummaryProps) => {
   const classes = useStyles();
   const { name, date_local, upcoming, success, links } = details;
+  const [imageLoaded, setImageLoaded] = useState(false);
   const time = moment(date_local).format('LLL');
 
   return (
@@ -20,11 +22,17 @@ const Summary = ({ details }: SummaryProps) => {
       <Grid item xs={12} sm={1}>
         <div className={classes.summaryPatchContainer}>
           {links?.patch?.small ? (
-            <img
-              src={links?.patch?.small}
-              alt={name}
-              className={classes.summaryPatch}
-            />
+            <>
+              <img
+                src={links?.patch?.small}
+                alt={name}
+                className={`${classes.summaryPatch} ${classes.summaryPatchLoaded}`}
+                onLoad={() => setImageLoaded(true)}
+              />
+              {!imageLoaded && (
+                <CircularProgress size={20} thickness={6} className={classes.loaderBlack} />
+              )}
+            </>
           ) : (
             <BrokenImageOutlined fontSize="inherit" color="inherit" className={classes.noPatch} />
           )}

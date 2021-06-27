@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => createStyles({
     "@media (max-width: 600px)": {
       paddingLeft: "15px",
       paddingRight: "15px",
+      marginTop: "75px",
     },
   },
   checkoutHeaderLeftContainer: {

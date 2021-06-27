@@ -43,6 +43,9 @@ export const useStyles = makeStyles((theme) => createStyles({
     fontSize: "40px"
   },
   summaryPatch: {
+    height: "0px"
+  },
+  summaryPatchLoaded: {
     height: "100%"
   },
   detailsPatch: {

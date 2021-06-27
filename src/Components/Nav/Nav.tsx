@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => createStyles({
     zIndex: 5,
     "@media (max-width: 600px)": {
       padding: "15px 15px 15px 0px",
+      height: "50px",
     }
   },
   navLogoContainer: {
@@ -34,11 +35,18 @@ const useStyles = makeStyles(theme => createStyles({
     width: "70px",
     height: "68px",
     position: "relative",
-    overflow: "hidden"
+    overflow: "hidden",
+    "@media (max-width: 600px)": {
+      width: "60px",
+      height: "48px",
+    }
   },
   navLogo: {
     position: "absolute",
     transform: "scale(0.4)",
+    "@media (max-width: 600px)": {
+      transform: "scale(0.3)",
+    }
   },
   navHeaderContainer: {
     display: "flex",
@@ -49,8 +57,12 @@ const useStyles = makeStyles(theme => createStyles({
   navHeader: {
     fontSize: "30px",
     color: "#fff",
-    fontWeight: 600,
-    fontFamily: theme.appDrawer.fonts?.primary
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontFamily: theme.appDrawer.fonts?.primary,
+    "@media (max-width: 600px)": {
+      fontSize: "25px",
+    }
   }
 }));
 
