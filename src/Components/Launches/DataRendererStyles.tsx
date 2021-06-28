@@ -241,5 +241,95 @@ export const useStyles = makeStyles((theme) => createStyles({
     "@media (max-width: 600px)": {
       height: "350px",
     }
+  },
+  mediaSliderContainer: {
+    position: "relative"
+  },
+  mediaSlider: {
+    minHeight: "400px",
+    maxHeight: "400px",
+    marginLeft: "8px",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    borderRadius: "5px",
+    overflow: "hidden",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+      height: "350px",
+    },
+  },
+  mediaImageContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    minHeight: "400px",
+    maxHeight: "400px",
+    overflow: "hidden",
+    background: "#000",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
+  },
+  arrowContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #fff",
+    background: "#000",
+    borderRadius: "5px",
+    transition: "0.3s",
+    transform: "translate(0px, 0px)",
+    zIndex: 1,
+    padding: "5px",
+    cursor: "pointer",
+    "&:hover": {
+      transition: "0.3s",
+      transform: "translate(5px, -5px)",
+      boxShadow: "-13px 13px 0px 0px #000000",
+    },
+  },
+  mediaNextArrow: {
+    position: "absolute",
+    fontSize: "25px",
+    color: "#fff",
+    top: "45%",
+    right: "20px",
+    "@media (max-width: 600px)": {
+      top: "unset",
+      bottom: "25px",
+    }
+  },
+  mediaBackArrow: {
+    position: "absolute",
+    fontSize: "25px",
+    color: "#fff",
+    top: "45%",
+    left: "30px",
+    "@media (max-width: 600px)": {
+      top: "unset",
+      bottom: "25px"
+    }
+  },
+  mediaIframeContainer: {
+    overflow: "hidden",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    borderRadius: "5px",
+    minHeight: "400px",
+    maxHeight: "400px",
+    width: "100%",
+    "@media (max-width: 600px)": {
+      height: "350px",
+    },
+  },
+  mediaIframe: {
+    minHeight: "400px",
+    maxHeight: "400px",
+    width: "100%",
+    "@media (max-width: 600px)": {
+      height: "350px",
+    },
   }
 }));

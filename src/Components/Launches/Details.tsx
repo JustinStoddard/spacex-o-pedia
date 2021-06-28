@@ -61,10 +61,17 @@ const Details = ({ details }: DetailsProps) => {
           <div className={classes.detailsText}>{_details}</div>
         </Grid>
       )}
-      <Grid item xs={12} className={classes.detailsContainer}>
-        <div className={classes.detailsHeader}>Media</div>
-        <Media links={links} />
-      </Grid>
+      {(
+        !links.flickr.original.length &&
+        links.youtube_id === null &&
+        links?.wikipedia === null &&
+        links?.article === null
+      ) ? "" : (
+        <Grid item xs={12} className={classes.detailsContainer}>
+          <div className={classes.detailsHeader}>Media</div>
+          <Media links={links} />
+        </Grid>
+      )}
       {crew.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Crew [{crew.length}]</div>
