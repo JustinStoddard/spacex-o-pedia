@@ -33,7 +33,7 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
 
   useEffect(() => {
     if (result?.longitude && result?.latitude) {
-      MapBoxGl.accessToken = "pk.eyJ1IjoiYmx1ZXJvb2YzNjAiLCJhIjoiY2prOHB1am40MDNlYjNwczBtN3V6ZG01dCJ9.IPRccV7flof-4CpZIbgcqg";
+      MapBoxGl.accessToken = process.env.REACT_APP_MAP_TOKEN ?? "";
       const map = new MapBoxGl.Map({
         container: "launch-pad-map",
         center: [result?.longitude, result?.latitude],
