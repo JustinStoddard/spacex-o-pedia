@@ -62,8 +62,8 @@ const Media = ({ links }: MediaProps) => {
           </Paper>
         </Grid>
       )}
-      {links.flickr.original.length > 0 && (
-        <Grid item xs={12} sm={6} className={classes.mediaSliderContainer}>
+      {links?.flickr?.original.length > 0 && (
+        <Grid item xs={12} sm={12} md={6} className={classes.mediaSliderContainer}>
           <div
             className={`${classes.arrowContainer} ${classes.mediaBackArrow}`}
             onClick={() => prevImage()}
@@ -89,8 +89,8 @@ const Media = ({ links }: MediaProps) => {
           </div>
         </Grid>
       )}
-      {links.youtube_id !== null && (
-        <Grid item xs={12} sm={6}>
+      {links?.youtube_id !== null && (
+        <Grid item xs={12} sm={12} md={6}>
           <div className={classes.mediaIframeContainer}>
             <iframe
               className={classes.mediaIframe}

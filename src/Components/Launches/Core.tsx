@@ -13,26 +13,21 @@ interface CoresProps {
 
 const Core = ({ core }: CoresProps) => {
   const classes = useStyles();
-  const {
-    core: _core,
-    reused,
-    legs,
-    landing_type,
-    landing_success,
-    gridfins,
-    flight,
-  } = core;
-  const [{ isFetching, result }, getData] = useFetchData("cores", _core);
+  const [{ isFetching, result }, getData] = useFetchData("cores", core.core);
 
   useEffect(() => {
     let mounted = true;
 
-    getData();
+    if (core.core) {
+      getData();
+    }
 
     return () => {
       mounted = false;
     }
   }, []);
+
+  console.log(result)
 
   if (isFetching) {
     return (
@@ -53,27 +48,27 @@ const Core = ({ core }: CoresProps) => {
           </Paper>
         </Grid>
       )}
-      {landing_success !== null && (
+      {core?.landing_success !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>LANDING SUCCESS</div>
-            <div className={classes.paperData}>{`${landing_success ?? "N/A"}`}</div>
+            <div className={classes.paperData}>{`${core?.landing_success ?? "N/A"}`}</div>
           </Paper>
         </Grid>
       )}
-      {reused !== null && (
+      {core?.reused !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>REUSED</div>
-            <div className={classes.paperData}>{`${reused ?? "N/A"}`}</div>
+            <div className={classes.paperData}>{`${core?.reused ?? "N/A"}`}</div>
           </Paper>
         </Grid>
       )}
-      {flight !== null && (
+      {core?.flight !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>NUM OF FLIGHTS</div>
-            <div className={classes.paperData}>{flight ?? "N/A"}</div>
+            <div className={classes.paperData}>{core?.flight ?? "N/A"}</div>
           </Paper>
         </Grid>
       )}
@@ -85,11 +80,11 @@ const Core = ({ core }: CoresProps) => {
           </Paper>
         </Grid>
       )}
-      {landing_type !== null && (
+      {core?.landing_type !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>LANDING TYPE</div>
-            <div className={classes.paperData}>{`${landing_type ?? "N/A"}`}</div>
+            <div className={classes.paperData}>{`${core?.landing_type ?? "N/A"}`}</div>
           </Paper>
         </Grid>
       )}
@@ -101,23 +96,23 @@ const Core = ({ core }: CoresProps) => {
           </Paper>
         </Grid>
       )}
-      {legs !== null && (
+      {core?.legs !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>LEGS</div>
-            <div className={classes.paperData}>{`${legs ?? "N/A"}`}</div>
+            <div className={classes.paperData}>{`${core?.legs ?? "N/A"}`}</div>
           </Paper>
         </Grid>
       )}
-      {gridfins !== null && (
+      {core?.gridfins !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>GRIDFINS</div>
-            <div className={classes.paperData}>{`${gridfins ?? "N/A"}`}</div>
+            <div className={classes.paperData}>{`${core?.gridfins ?? "N/A"}`}</div>
           </Paper>
         </Grid>
       )}
-      {result?.reuse_count !== null && (
+      {core?.result?.reuse_count !== null && (
         <Grid item>
           <Paper className={classes.paper}>
             <div className={classes.paperHeader}>REUSE COUNT</div>

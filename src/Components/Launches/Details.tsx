@@ -41,7 +41,7 @@ const Details = ({ details }: DetailsProps) => {
   return (
     <Grid container spacing={2}>
       {links?.patch?.small && (
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} md={3} lg={2}>
           <div className={classes.detailsPatchContainer}>
             <img
               src={links?.patch?.small}
@@ -56,7 +56,7 @@ const Details = ({ details }: DetailsProps) => {
         </Grid>
       )}
       {_details && (
-        <Grid item xs={12} sm={10} className={`${classes.detailsContainer} ${classes.addFlex}`}>
+        <Grid item xs={12} md={9} lg={10} className={`${classes.detailsContainer} ${classes.addFlex}`}>
           <div className={classes.detailsHeader}>Details</div>
           <div className={classes.detailsText}>{_details}</div>
         </Grid>

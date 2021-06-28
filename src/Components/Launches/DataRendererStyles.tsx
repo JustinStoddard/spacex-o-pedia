@@ -225,15 +225,18 @@ export const useStyles = makeStyles((theme) => createStyles({
     height: "inherit"
   },
   mapContainer: {
-    width: "100%",
+    width: "calc(100% - 8px)",
     minHeight: "400px",
     maxHeight: "400px",
     overflow: "hidden",
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
     borderRadius: "5px",
+    marginLeft: "8px",
     "@media (max-width: 600px)": {
       height: "350px",
+      marginLeft: "0px",
+      width: "100%",
     }
   },
   map: {
@@ -320,9 +323,12 @@ export const useStyles = makeStyles((theme) => createStyles({
     borderRadius: "5px",
     minHeight: "400px",
     maxHeight: "400px",
-    width: "100%",
+    width: "calc(100% - 8px)",
+    marginLeft: "8px",
     "@media (max-width: 600px)": {
       height: "350px",
+      width: "100%",
+      marginLeft: "0px",
     },
   },
   mediaIframe: {

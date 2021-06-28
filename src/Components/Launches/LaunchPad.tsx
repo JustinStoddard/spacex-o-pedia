@@ -146,23 +146,8 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
           </Paper>
         </Grid>
       )}
-      {result?.images?.large.length > 0 && (
-        <Grid item xs={12} sm={6}>
-          <div className={classes.bigImageContainer}>
-            <img
-              src={result?.images?.large[0]}
-              alt={result?.name}
-              className={`${classes.bigImage} ${imageLoaded ? classes.bigImageLoaded : ""}`}
-              onLoad={() => setImageLoaded(true)}
-            />
-            {!imageLoaded && (
-              <CircularProgress size={20} thickness={6} color="inherit" className={classes.imageWhiteLoader} />
-            )}
-          </div>
-        </Grid>
-      )}
       {(result?.longitude && result?.latitude) && (
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <div className={classes.mapContainer}>
             <div
               id="launch-pad-map"
