@@ -33,6 +33,7 @@ export const useStyles = makeStyles((theme) => createStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "15px",
     "@media (max-width: 600px)": {
       fontSize: "13px",
       width: "100%",
