@@ -6,6 +6,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import MapBoxGl from "mapbox-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { useStyles } from './DataRendererStyles';
 import useFetchData from '../../Services/hooks/useFetchData';
 
