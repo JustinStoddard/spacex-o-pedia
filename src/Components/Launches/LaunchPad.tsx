@@ -36,11 +36,11 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
       MapBoxGl.accessToken = "pk.eyJ1IjoiYmx1ZXJvb2YzNjAiLCJhIjoiY2prOHB1am40MDNlYjNwczBtN3V6ZG01dCJ9.IPRccV7flof-4CpZIbgcqg";
       const map = new MapBoxGl.Map({
         container: "launch-pad-map",
-        center: [-102.166260, 40.562259],
-        zoom: 3,
-        pitch: 0,
-        bearing: 0,
-        style: `mapbox://styles/mapbox/dark-v10?fresh=true?optimize=true`,
+        center: [result?.longitude, result?.latitude],
+        zoom: 15,
+        pitch: 10,
+        bearing: 40,
+        style: `mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y`,
         hash: false,
         attributionControl: false,
       });
@@ -55,48 +55,26 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
 
       //Add building layer
       map.on('load', () => {
-        var layers: any = map.getStyle().layers;
-        var labelLayerId;
-        for (var i = 0; i < layers.length; i++) {
-          if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-            labelLayerId = layers[i].id;
-            break;
-          }
-        }
+        map.addSource('mapbox-dem', {
+          'type': 'raster-dem',
+          'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+          'tileSize': 512,
+          'maxzoom': 14
+        });
 
-        map.addLayer(
-          {
-            'id': 'add-3d-buildings',
-            'source': 'composite',
-            'source-layer': 'building',
-            'filter': ['==', 'extrude', 'true'],
-            'type': 'fill-extrusion',
-            'minzoom': 14,
-            'paint': {
-              'fill-extrusion-color': '#aaa',
-              'fill-extrusion-height': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                15,
-                0,
-                15.05,
-                ['get', 'height']
-              ],
-              'fill-extrusion-base': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                15,
-                0,
-                15.05,
-                ['get', 'min_height']
-              ],
-              'fill-extrusion-opacity': 0.6
-            }
-          },
-          labelLayerId
-        );
+        // add the DEM source as a terrain layer with exaggerated height
+        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+           
+        // add a sky layer that will show when the map is highly pitched
+        map.addLayer({
+          'id': 'sky',
+          'type': 'sky',
+          'paint': {
+            'sky-type': 'atmosphere',
+            'sky-atmosphere-sun': [0.0, 0.0],
+            'sky-atmosphere-sun-intensity': 15
+          }
+        });
       });
 
       const marker = new MapBoxGl.Marker({
@@ -107,19 +85,6 @@ const LaunchPad = ({ launchpad }: LaunchProps) => {
       setMapRef(map);
     }
   }, [result, isMobile]);
-
-  useEffect(() => {
-    if (mapRef) {
-      mapRef.flyTo({
-        center: [result?.longitude, result?.latitude],
-        zoom: 16,
-        pitch: 60,
-        bearing: -60,
-        speed: 0.8,
-        curve: 1.42
-      });
-    }
-  }, [mapRef]);
 
   const onFocusEvent = useCallback(() => {
     mapRef.scrollZoom.enable();
