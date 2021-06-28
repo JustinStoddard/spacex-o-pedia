@@ -15,6 +15,7 @@ import Capsule from './Capsule';
 import Crew from './Crew';
 import Payload from './Payload';
 import LaunchPad from './LaunchPad';
+import Media from './Media';
 
 interface DetailsProps {
   details?: any;
@@ -60,6 +61,10 @@ const Details = ({ details }: DetailsProps) => {
           <div className={classes.detailsText}>{_details}</div>
         </Grid>
       )}
+      <Grid item xs={12} className={classes.detailsContainer}>
+        <div className={classes.detailsHeader}>Media</div>
+        <Media links={links} />
+      </Grid>
       {crew.length > 0 && (
         <Grid item xs={12} className={classes.detailsContainer}>
           <div className={classes.detailsHeader}>Crew [{crew.length}]</div>
