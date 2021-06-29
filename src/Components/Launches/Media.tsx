@@ -42,24 +42,17 @@ const Media = ({ links }: MediaProps) => {
 
   return (
     <Grid container spacing={2}>
-      {links?.wikipedia !== null && (
-        <Grid item>
-          <Paper className={classes.paper}>
-            <div className={classes.paperHeader}>wikipedia</div>
-            <div className={classes.paperData}>
-              <a href={links.wikipedia} target="_blank">{`${links.wikipedia ?? "N/A"}`}</a>
-            </div>
-          </Paper>
-        </Grid>
-      )}
-      {links?.article !== null && (
-        <Grid item>
-          <Paper className={classes.paper}>
-            <div className={classes.paperHeader}>article</div>
-            <div className={classes.paperData}>
-              <a href={links?.article} target="_blank">{`${links?.article ?? "N/A"}`}</a>
-            </div>
-          </Paper>
+      {links?.youtube_id !== null && (
+        <Grid item xs={12} sm={12} md={6}>
+          <div className={classes.mediaIframeContainer}>
+            <iframe
+              className={classes.mediaIframe}
+              src={`https://www.youtube.com/embed/${links.youtube_id}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            ></iframe>
+          </div>
         </Grid>
       )}
       {links?.flickr?.original.length > 0 && (
@@ -89,17 +82,24 @@ const Media = ({ links }: MediaProps) => {
           </div>
         </Grid>
       )}
-      {links?.youtube_id !== null && (
-        <Grid item xs={12} sm={12} md={6}>
-          <div className={classes.mediaIframeContainer}>
-            <iframe
-              className={classes.mediaIframe}
-              src={`https://www.youtube.com/embed/${links.youtube_id}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            ></iframe>
-          </div>
+      {links?.wikipedia !== null && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>wikipedia</div>
+            <div className={classes.paperData}>
+              <a href={links.wikipedia} target="_blank">See wiki</a>
+            </div>
+          </Paper>
+        </Grid>
+      )}
+      {links?.article !== null && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>article</div>
+            <div className={classes.paperData}>
+              <a href={links?.article} target="_blank">See article</a>
+            </div>
+          </Paper>
         </Grid>
       )}
     </Grid>

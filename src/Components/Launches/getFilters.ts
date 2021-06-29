@@ -25,8 +25,10 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
     case "crew":
       newResults = newResults.filter((key: string) => {
         const item = result[key];
+        const matchesCrew = item.name.toLowerCase().match(category);
+        const matchesOtherCrewMissions = item.name.toLowerCase().match("cctcap")
     
-        if (item.name.toLowerCase().match(category)) {
+        if (matchesCrew || matchesOtherCrewMissions) {
           return key;
         }
       });

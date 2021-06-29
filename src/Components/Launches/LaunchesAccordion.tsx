@@ -194,9 +194,9 @@ const LaunchesAccordion = ({ result, category }: LaunchesAccordionProps) => {
     setPage(value);
   };
 
-  useEffect(() => {
-    handlePaginationChange("", 1);
-  }, [isMobile]);
+  // useEffect(() => {
+  //   handlePaginationChange("", 1);
+  // }, [isMobile]);
 
   const { filteredResults, count } = generateResults();
 
