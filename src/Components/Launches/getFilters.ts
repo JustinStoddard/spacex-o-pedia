@@ -19,9 +19,6 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
   });
 
   switch (usableCategory) {
-    case "all":
-      //Do nothing
-      break;
     case "crew":
       newResults = newResults.filter((key: string) => {
         const item = result[key];
@@ -29,6 +26,33 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
         const matchesOtherCrewMissions = item.name.toLowerCase().match("cctcap")
     
         if (matchesCrew || matchesOtherCrewMissions) {
+          return key;
+        }
+      });
+      break;
+    case "inspiration":
+      newResults = newResults.filter((key: string) => {
+        const item = result[key];
+    
+        if (item.name.toLowerCase().match(category)) {
+          return key;
+        }
+      });
+      break;
+    case "iridium":
+      newResults = newResults.filter((key: string) => {
+        const item = result[key];
+    
+        if (item.name.toLowerCase().match(category)) {
+          return key;
+        }
+      });
+      break;
+    case "nrol":
+      newResults = newResults.filter((key: string) => {
+        const item = result[key];
+    
+        if (item.name.toLowerCase().match(category)) {
           return key;
         }
       });

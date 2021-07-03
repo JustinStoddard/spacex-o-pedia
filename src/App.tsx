@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import LandingPage from './Pages/LandingPage';
 
 const LaunchesPage = lazy(() => import('./Pages/LaunchesPage'));
+const RocketsPage = lazy(() => import('./Pages/RocketsPage'));
 const NotFoundView = lazy(() => import('./Components/NotFoundView/NotFoundView'));
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path="/launches/:category" component={LaunchesPage} />
+          <Route exact path="/rockets/:rocket" component={RocketsPage} />
           <Route exact path='/404' component={NotFoundView} />
           <Route path="*">
             <Redirect to='/404' />

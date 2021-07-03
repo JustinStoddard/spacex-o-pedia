@@ -43,27 +43,39 @@ const useStyles = makeStyles(theme => createStyles({
     fontWeight: 500,
     fontFamily: theme.appDrawer.fonts.primary,
   },
+  landingHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    color: "#fff",
+    background: "#000",
+    fontSize: "20px",
+    fontWeight: 600,
+    boxShadow: "-8px 8px 0px -1px #000000",
+    borderRadius: "5px",
+    padding: "15px",
+    border: "2px solid #fff",
+    maxWidth: "700px",
+    textTransform: "uppercase",
+  },
+  moreMarginAbove: {
+    marginTop: "20px"
+  },
   optionsContainer: {
-    maxWidth: "700px"
+    // maxWidth: "700px"
   },
   optionCardContainer: {
-    background: "#000",
+    background: "#fff",
     width: "100%",
+    height: "150px",
     padding: "10px",
     boxShadow: "-8px 8px 0px -1px #000000",
-    borderLeft: "2px solid #fff",
-    borderBottom: "2px solid #fff",
-    borderRight: "0px",
-    borderTop: "0px",
+    border: "2px solid #000",
     borderRadius: "5px",
-    marginBottom: "30px",
     maxWidth: "450px",
     cursor: "pointer",
     transition: "0.3s",
     transform: "translate(0px, 0px)",
     "@media (max-width: 600px)": {
       padding: "15px",
-      marginBottom: "15px"
     },
     "&:hover": {
       transition: "0.3s",
@@ -72,8 +84,8 @@ const useStyles = makeStyles(theme => createStyles({
     }
   },
   optionCardText: {
-    color: "#fff",
-    fontSize: "15px",
+    color: "#000",
+    fontSize: "20px",
     fontWeight: 500,
     fontFamily: theme.appDrawer.fonts.primary,
   },
@@ -104,27 +116,46 @@ const LandingPage = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const options = [
+  const launchOptions = [
     {
       name: "All",
-      disabled: false,
     },
     {
       name: "Crew",
-      disabled: false,
+    },
+    {
+      name: "Inspiration"
     },
     {
       name: "Starlink",
-      disabled: false,
     },
     {
       name: "Resupply",
-      disabled: false,
     },
     {
       name: "Spaceforce",
-      disabled: false,
     },
+    {
+      name: "Iridium",
+    },
+    {
+      name: "NROL",
+    },
+  ];
+
+  const rocketOptions = [
+    {
+      name: "Falcon 1",
+    },
+    {
+      name: "Falcon 9",
+    },
+    {
+      name: "Falcon Heavy",
+    },
+    {
+      name: "Starship",
+    }
   ];
 
   return (
@@ -134,21 +165,14 @@ const LandingPage = () => {
         <div className={classes.landingPageWelcomeBoxDescription}>This is the spacexopedia! A place for all curious eyes to get an even closer look at all things SpaceX! Expect to find all sorts of data! Info on specific launches, telemetry, payloads and more! Enjoy!</div>
       </div>
       <Grid container spacing={3} className={classes.optionsContainer}>
-        {options.map((option, index) => {
+        <Grid item xs={12}>
+          <div className={classes.landingHeader}>Official Launches</div>
+        </Grid>
+        {launchOptions.map((option, index) => {
           const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
-          if (option.disabled) return (
-            <Grid item key={index}>
-              <button
-                type="button"
-                className={classes.optionCardContainerDisabled}
-              >
-                <div className={classes.optionCardText}>{option.name}</div>
-              </button>
-            </Grid>
-          );
           return (
-            <Grid item key={index}>
+            <Grid item key={index} xs={6} sm={4} md={3} lg={2}>
               <button
                 type="button"
                 className={classes.optionCardContainer}
@@ -159,6 +183,27 @@ const LandingPage = () => {
             </Grid>
           );
         })}
+        <Grid item xs={12}>
+          <div className={classes.landingHeader}>Rockets</div>
+        </Grid>
+        {rocketOptions.map((option, index) => {
+          const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
+          
+          return (
+            <Grid item key={index} xs={6} sm={4} md={3} lg={2}>
+              <button
+                type="button"
+                className={classes.optionCardContainer}
+                onClick={() => history.push(`/rockets/${prettyLinkParam}`)}
+              >
+                <div className={classes.optionCardText}>{option.name}</div>
+              </button>
+            </Grid>
+          );
+        })}
+        <Grid item xs={12}>
+          <div className={classes.landingHeader}>Roadster</div>
+        </Grid>
       </Grid>
     </div>
   );
