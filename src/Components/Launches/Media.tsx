@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { useStyles } from './DataRendererStyles';
-import Image from './Image';
+import Image from '../Common/Image';
 
 interface MediaProps {
   links?: any;
@@ -68,7 +68,11 @@ const Media = ({ links }: MediaProps) => {
               return (
                 <div key={index}>
                   <div className={classes.mediaImageContainer}>
-                    <Image img={item} />
+                    <Image
+                      img={item}
+                      defaultClass={classes.bigImage}
+                      loadedClass={classes.bigImageLoaded}
+                    />
                   </div>
                 </div>
               );

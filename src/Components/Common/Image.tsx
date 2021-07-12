@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import {
   CircularProgress,
 } from '@material-ui/core';
-import { useStyles } from './DataRendererStyles';
+import { useStyles } from '../Launches/DataRendererStyles';
 
 interface ImageProps {
   img?: string;
+  defaultClass?: any;
+  loadedClass?: any;
 }
 
-const Image = ({ img }: ImageProps) => {
+const Image = ({ img, defaultClass, loadedClass }: ImageProps) => {
   const classes = useStyles();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -17,7 +19,7 @@ const Image = ({ img }: ImageProps) => {
       <img
         src={img}
         alt={img}
-        className={`${classes.bigImage} ${imageLoaded ? classes.bigImageLoaded : ""}`}
+        className={`${defaultClass} ${imageLoaded ? loadedClass : ""}`}
         onLoad={() => setImageLoaded(true)}
       />
       {!imageLoaded && (
