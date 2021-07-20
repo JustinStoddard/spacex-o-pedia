@@ -29,10 +29,21 @@ const useStyles = makeStyles((theme) => createStyles({
     }
   },
   accordion: {
-    boxShadow: "-8px 8px 0px -1px #000000",
+    boxShadow: "-8px 8px 1px -1px #000000",
     borderRadius: "5px",
     border: "2px solid #000",
-    margin: "15px 0px",
+    transition: "0.3s",
+    transform: "translate(0px, 0px)"
+  },
+  accordionExpanded: {
+    transition: "0.3s",
+    boxShadow: "-20px 20px 3px 0px #000000",
+    transform: "translate(12px, -12px)",
+    "@media (max-width: 600px)": {
+      boxShadow: "-12px 12px 2.5px 0px #000000",
+      transform: "translate(5px, -5px)",
+      marginTop: "0px",
+    }
   },
   first: {
     marginTop: "0px"
@@ -94,10 +105,12 @@ const useStyles = makeStyles((theme) => createStyles({
     paddingLeft: "30px",
     paddingRight: "30px",
     zIndex: 5,
+    "@media (max-width: 850px)": {
+      marginTop: "75px",
+    },
     "@media (max-width: 600px)": {
       paddingLeft: "15px",
       paddingRight: "15px",
-      marginTop: "75px",
     },
   },
   checkoutHeaderLeftContainer: {
@@ -193,10 +206,6 @@ const LaunchesAccordion = ({ result, category }: LaunchesAccordionProps) => {
     setExpanded("");
     setPage(value);
   };
-
-  // useEffect(() => {
-  //   handlePaginationChange("", 1);
-  // }, [isMobile]);
 
   const { filteredResults, count } = generateResults();
 

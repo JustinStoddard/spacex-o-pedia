@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => createStyles({
     borderBottom: "2px solid #fff",
     borderBottomRightRadius: "5px",
     zIndex: 5,
-    "@media (max-width: 600px)": {
+    "@media (max-width: 850px)": {
       padding: "15px 15px 15px 0px",
       height: "50px",
     }
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => createStyles({
     height: "68px",
     position: "relative",
     overflow: "hidden",
-    "@media (max-width: 600px)": {
+    "@media (max-width: 850px)": {
       width: "60px",
       height: "48px",
     }
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => createStyles({
   navLogo: {
     position: "absolute",
     transform: "scale(0.4)",
-    "@media (max-width: 600px)": {
+    "@media (max-width: 850px)": {
       transform: "scale(0.3)",
     }
   },
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => createStyles({
     fontWeight: 700,
     textTransform: "uppercase",
     fontFamily: theme.appDrawer.fonts?.primary,
-    "@media (max-width: 600px)": {
+    "@media (max-width: 850px)": {
       fontSize: "25px",
     }
   }

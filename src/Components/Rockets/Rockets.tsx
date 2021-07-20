@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => createStyles({
     alignItems: "center",
     flexDirection: "column",
     height: "calc(100vh - 70px)",
-    "@media (max-width: 600px)": {
+    "@media (max-width: 850px)": {
       height: "calc(100vh - 50px)",
     }
   },

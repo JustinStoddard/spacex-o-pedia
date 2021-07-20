@@ -3,6 +3,7 @@ import {
   makeStyles,
   createStyles,
   Grid,
+  Paper,
 } from '@material-ui/core';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
@@ -16,11 +17,13 @@ interface RocketDataProps {
 
 const useStyles = makeStyles((theme) => createStyles({
   mediaSliderContainer: {
-    position: "relative"
+    position: "relative",
+    marginBottom: "10px",
+    marginTop: "10px"
   },
   mediaSlider: {
-    minHeight: "800px",
-    maxHeight: "800px",
+    minHeight: "65vh",
+    maxHeight: "65vh",
     boxShadow: "-8px 8px 0px -1px #000000",
     border: "2px solid #000",
     borderRadius: "5px",
@@ -36,8 +39,8 @@ const useStyles = makeStyles((theme) => createStyles({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    minHeight: "800px",
-    maxHeight: "800px",
+    minHeight: "65vh",
+    maxHeight: "65vh",
     overflow: "hidden",
     background: "#000",
     "@media (max-width: 600px)": {
@@ -90,13 +93,46 @@ const useStyles = makeStyles((theme) => createStyles({
   bigImage: {
     height: "0px",
     width: "100%",
-    "@media (max-width: 600px)": {
-      height: "400px !important",
-      width: "unset"
-    }
   },
   bigImageLoaded: {
-    height: "inherit"
+    height: "100%"
+  },
+  header: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "18px",
+    marginBottom: "5px",
+  },
+  text: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 500,
+    fontSize: "13px",
+  },
+  paper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "space-between",
+    padding: "15px",
+    flexDirection: "column",
+    boxShadow: "-8px 8px 0px -1px #000000",
+    border: "2px solid #000",
+    "@media (max-width: 600px)": {
+      marginLeft: "0px",
+    }
+  },
+  paperHeader: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    fontSize: "13px",
+    lineHeight: 1
+  },
+  paperData: {
+    fontFamily: theme.appDrawer.fonts.primary,
+    fontWeight: 500,
+    fontSize: "11px",
+    textTransform: "uppercase",
   },
 }));
 
@@ -152,6 +188,14 @@ const RocketData = ({ item }: RocketDataProps) => {
 
   return (
     <Grid container spacing={2}>
+      {description !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>description</div>
+            <div className={classes.paperData}>{description}</div>
+          </Paper>
+        </Grid>
+      )}
       <Grid item xs={12} className={classes.mediaSliderContainer}>
         <div
           className={`${classes.arrowContainer} ${classes.mediaBackArrow}`}
@@ -181,9 +225,123 @@ const RocketData = ({ item }: RocketDataProps) => {
           <ChevronRight fontSize="inherit" color="inherit" />
         </div>
       </Grid>
-      <Grid item>
-
-      </Grid>
+      {active !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>active</div>
+            <div className={classes.paperData}>{`${active}`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {company !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>company</div>
+            <div className={classes.paperData}>{`${company}`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {country !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>country</div>
+            <div className={classes.paperData}>{country}</div>
+          </Paper>
+        </Grid>
+      )}
+      {cost_per_launch !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>cost per launch</div>
+            <div className={classes.paperData}>{`$${cost_per_launch.toLocaleString()}`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {engines !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>engine type</div>
+            <div className={classes.paperData}>{engines.type}</div>
+          </Paper>
+        </Grid>
+      )}
+      {landing_legs !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>num of landing legs</div>
+            <div className={classes.paperData}>{landing_legs.number}</div>
+          </Paper>
+        </Grid>
+      )}
+      {boosters !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>boosters</div>
+            <div className={classes.paperData}>{boosters}</div>
+          </Paper>
+        </Grid>
+      )}
+      {success_rate_pct !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>success rate pct</div>
+            <div className={classes.paperData}>{success_rate_pct}</div>
+          </Paper>
+        </Grid>
+      )}
+      {stages !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>stages</div>
+            <div className={classes.paperData}>{stages}</div>
+          </Paper>
+        </Grid>
+      )}
+      {first_flight !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>first flight</div>
+            <div className={classes.paperData}>{first_flight}</div>
+          </Paper>
+        </Grid>
+      )}
+      {height !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>height</div>
+            <div className={classes.paperData}>{`METRIC: ${height.meters}m`}</div>
+            <div className={classes.paperData}>{`IMPERIAL: ${height.feet}ft`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {diameter !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>diameter</div>
+            <div className={classes.paperData}>{`METRIC: ${diameter.meters}m`}</div>
+            <div className={classes.paperData}>{`IMPERIAL: ${diameter.feet}ft`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {mass !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>mass</div>
+            <div className={classes.paperData}>{`KGS: ${mass.kg.toLocaleString()}`}</div>
+            <div className={classes.paperData}>{`LBS: ${mass.lb.toLocaleString()}`}</div>
+          </Paper>
+        </Grid>
+      )}
+      {wikipedia !== undefined && (
+        <Grid item>
+          <Paper className={classes.paper}>
+            <div className={classes.paperHeader}>wikipedia</div>
+            <div className={classes.paperData}>
+              <a href={wikipedia}>Click Me</a>
+            </div>
+          </Paper>
+        </Grid>
+      )}
     </Grid>
   );
 };

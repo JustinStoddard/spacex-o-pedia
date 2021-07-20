@@ -76,10 +76,12 @@ const useStyles = makeStyles((theme) => createStyles({
     paddingLeft: "30px",
     paddingRight: "30px",
     zIndex: 5,
+    "@media (max-width: 850px)": {
+      marginTop: "75px",
+    },
     "@media (max-width: 600px)": {
       paddingLeft: "15px",
       paddingRight: "15px",
-      marginTop: "75px",
     },
   },
   checkoutHeaderLeftContainer: {

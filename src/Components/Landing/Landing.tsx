@@ -10,9 +10,11 @@ const useStyles = makeStyles(theme => createStyles({
   landingPageContainer: {
     padding: "30px",
     marginTop: "70px",
+    "@media (max-width: 850px)": {
+      marginTop: "55px",
+    },
     "@media (max-width: 600px)": {
       padding: "25px 15px",
-      marginTop: "55px",
     }
   },
   landingPageWelcomeBoxContainer: {
@@ -201,9 +203,9 @@ const LandingPage = () => {
             </Grid>
           );
         })}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <div className={classes.landingHeader}>Roadster</div>
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );
