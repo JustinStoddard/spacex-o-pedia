@@ -56,6 +56,8 @@ const UserMenu = ({}: UserMenuProps) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
   const [open, setOpen] = useState<boolean>(false);
 
+  const isProd = process.env.NODE_ENV === "production";
+
   const handleNavClose = (name: string) => {
     switch (name) {
       case "Login":
@@ -63,7 +65,7 @@ const UserMenu = ({}: UserMenuProps) => {
         setOpen(false);
         break;
       case "Logout":
-        logout();
+        isProd ? logout({ returnTo: "https://space-x-opedia.herokuapp.com" }) : logout({ returnTo: "http://localhost:3000" });
         setOpen(false);
         break;
       default:
