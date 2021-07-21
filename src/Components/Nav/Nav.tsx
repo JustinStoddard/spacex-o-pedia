@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import LoginButton from './LoginButton/index';
-import UserMenu from './UserMenu';
+import UserMenu from './UserMenu/index';
 import Image from '../../images/moonpicture.jpeg';
 
 interface NavProps {
@@ -76,22 +76,19 @@ const useStyles = makeStyles(theme => createStyles({
 const Nav = ({}: NavProps) => {
   const classes = useStyles();
   const history = useHistory();
-  const { logout, isAuthenticated } = useAuth0();
 
   return (
-    <div className={classes.navContainer}>
-      <div className={classes.navHeaderContainer} tabIndex={0} onClick={() => history.push("/")}>
-        <div className={classes.navLogoContainer}>
-          <img src={Image} className={classes.navLogo} />
+    <>
+      <div className={classes.navContainer}>
+        <div className={classes.navHeaderContainer} tabIndex={0} onClick={() => history.push("/")}>
+          <div className={classes.navLogoContainer}>
+            <img src={Image} className={classes.navLogo} />
+          </div>
+          <div className={classes.navHeader}>space|x|opedia</div>
         </div>
-        <div className={classes.navHeader}>space|x|opedia</div>
       </div>
-      {isAuthenticated ? (
-        <UserMenu />
-      ) : (
-        <LoginButton />
-      )}
-    </div>
+      <UserMenu />
+    </>
   );
 };
 
