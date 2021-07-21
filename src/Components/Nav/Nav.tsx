@@ -1,7 +1,14 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core';
+import {
+  makeStyles,
+  createStyles,
+  Button,
+} from '@material-ui/core';
 import { useHistory } from 'react-router';
+import { useAuth0 } from '@auth0/auth0-react';
 
+import LoginButton from './LoginButton/index';
+import UserMenu from './UserMenu';
 import Image from '../../images/moonpicture.jpeg';
 
 interface NavProps {
@@ -63,12 +70,13 @@ const useStyles = makeStyles(theme => createStyles({
     "@media (max-width: 850px)": {
       fontSize: "25px",
     }
-  }
+  },
 }));
 
 const Nav = ({}: NavProps) => {
   const classes = useStyles();
   const history = useHistory();
+  const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <div className={classes.navContainer}>
@@ -78,6 +86,11 @@ const Nav = ({}: NavProps) => {
         </div>
         <div className={classes.navHeader}>space|x|opedia</div>
       </div>
+      {isAuthenticated ? (
+        <UserMenu />
+      ) : (
+        <LoginButton onClick={() => loginWithRedirect()} />
+      )}
     </div>
   );
 };

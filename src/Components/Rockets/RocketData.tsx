@@ -151,12 +151,9 @@ const RocketData = ({ item }: RocketDataProps) => {
     diameter,
     engines,
     first_flight,
-    first_stage,
     height,
     landing_legs,
     mass,
-    payload_weights,
-    second_stage,
     stages,
     wikipedia,
     success_rate_pct
