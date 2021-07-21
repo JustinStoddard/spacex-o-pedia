@@ -4,9 +4,9 @@ import {
   createStyles,
   Button,
 } from '@material-ui/core';
-
+import { useAuth0 } from '@auth0/auth0-react';
 interface LoginButtonProps {
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+
 };
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -23,14 +23,15 @@ const useStyles = makeStyles((theme) => createStyles({
   }
 }));
 
-const LoginButton = ({ onClick }: LoginButtonProps) => {
+const LoginButton = ({}: LoginButtonProps) => {
   const classes = useStyles();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <Button
       data-testid="nav-login-button"
       className={classes.navButton}
-      onClick={onClick}
+      onClick={() => loginWithRedirect()}
     >
       Login
     </Button>

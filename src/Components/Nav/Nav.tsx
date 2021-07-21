@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => createStyles({
 const Nav = ({}: NavProps) => {
   const classes = useStyles();
   const history = useHistory();
-  const { logout, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { logout, isAuthenticated } = useAuth0();
 
   return (
     <div className={classes.navContainer}>
@@ -89,7 +89,7 @@ const Nav = ({}: NavProps) => {
       {isAuthenticated ? (
         <UserMenu />
       ) : (
-        <LoginButton onClick={() => loginWithRedirect()} />
+        <LoginButton />
       )}
     </div>
   );
