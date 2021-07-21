@@ -7,10 +7,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './Theme';
 
+import getEnvVar from './Helpers/getEnvVar';
+
+const domain = getEnvVar('REACT_APP_AUTH0_DOMAIN');
+const clientId = getEnvVar('REACT_APP_AUTH0_CLIENT_ID');
+
 ReactDOM.render(
   <Auth0Provider
-    domain={process.env.REACT_APP_AUTH0_DOMAIN || ""}
-    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ""}
+    domain={domain || ""}
+    clientId={clientId || ""}
     redirectUri={window.location.origin}
   >
     <ThemeProvider theme={theme}>

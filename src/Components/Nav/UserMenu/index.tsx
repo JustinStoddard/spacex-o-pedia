@@ -9,6 +9,8 @@ import { Person, AddCircle, Cancel } from '@material-ui/icons';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import { useAuth0 } from '@auth0/auth0-react';
 
+import getEnvVar from '../../../Helpers/getEnvVar';
+
 interface UserMenuProps {
 
 };
@@ -55,8 +57,9 @@ const UserMenu = ({}: UserMenuProps) => {
   const classes = useStyles();
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
   const [open, setOpen] = useState<boolean>(false);
+  const env = getEnvVar('NODE_ENV');
 
-  const isProd = process.env.NODE_ENV === "production";
+  const isProd = env === "production";
 
   const handleNavClose = (name: string) => {
     switch (name) {
