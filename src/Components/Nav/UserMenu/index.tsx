@@ -6,7 +6,8 @@ import {
   Backdrop,
   useMediaQuery,
 } from '@material-ui/core';
-import { Person, AddCircle, Cancel } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
+import { Person, AddCircle, Cancel, Public, GitHub } from '@material-ui/icons';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -58,6 +59,11 @@ const useStyles = makeStyles((theme) => createStyles({
     fontFamily: theme.appDrawer.fonts?.primary,
     fontSize: "11px",
     padding: "4px 8px",
+    borderRadius: "5px",
+    fontWeight: 700,
+  },
+  navIcon: {
+    color: "#000"
   }
 }));
 
@@ -67,6 +73,7 @@ const UserMenu = ({}: UserMenuProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const env = getEnvVar('NODE_ENV');
   const isTablet = useMediaQuery('(max-width: 850px)');
+  const history = useHistory();
 
   const isProd = env === "production";
 
@@ -80,14 +87,30 @@ const UserMenu = ({}: UserMenuProps) => {
         isProd ? logout({ returnTo: "https://space-x-opedia.herokuapp.com" }) : logout({ returnTo: "http://localhost:3000" });
         setOpen(false);
         break;
+      case "Home":
+        history.push("/");
+        setOpen(false);
+        break;
+      case "About":
+        history.push("/about");
+        setOpen(false);
+        break;
       default:
     };
   };
 
   const actions = [
     {
-      icon: isAuthenticated ? <Cancel /> : <AddCircle />,
-      name: isAuthenticated ? 'Logout' : 'Login'
+      icon: isAuthenticated ? <Cancel color="inherit" className={classes.navIcon} /> : <AddCircle color="inherit" className={classes.navIcon} />,
+      name: isAuthenticated ? 'Logout' : 'Login',
+    },
+    {
+      icon: <Person color="inherit" className={classes.navIcon} />,
+      name: 'About'
+    },
+    {
+      icon: <Public color="inherit" className={classes.navIcon} />,
+      name: 'Home',
     }
   ];
 
@@ -132,6 +155,9 @@ const UserMenu = ({}: UserMenuProps) => {
             tooltipOpen={isTablet}
             classes={{
               staticTooltipLabel: classes.navToolTip
+            }}
+            TooltipClasses={{
+              tooltip: classes.navToolTip
             }}
             onClick={() => handleNavClose(action.name)}
           />

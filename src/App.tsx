@@ -5,6 +5,7 @@ import LandingPage from './Pages/LandingPage';
 
 const LaunchesPage = lazy(() => import('./Pages/LaunchesPage'));
 const RocketsPage = lazy(() => import('./Pages/RocketsPage'));
+const AboutPage = lazy(() => import('./Pages/AboutPage'));
 const NotFoundView = lazy(() => import('./Components/NotFoundView/NotFoundView'));
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route exact path='/' component={LandingPage} />
           <Route exact path="/launches/:category" component={LaunchesPage} />
           <Route exact path="/rockets/:rocket" component={RocketsPage} />
+          <Route exact path="/about" component={AboutPage} />
           <Route exact path='/404' component={NotFoundView} />
           <Route path="*">
             <Redirect to='/404' />
