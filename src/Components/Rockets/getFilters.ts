@@ -1,11 +1,10 @@
 interface FilterParams {
   result?: any;
-  filteredResults?: any;
   rocket?: string;
 }
 
-const getFilters = ({ result, filteredResults, rocket }: FilterParams) => {
-  let newResults = filteredResults;
+const getFilters = ({ result, rocket }: FilterParams) => {
+  let newResults = Object.keys(result).reverse();
   let usableRocket = rocket?.toLowerCase();
 
   switch (usableRocket) {
@@ -13,7 +12,7 @@ const getFilters = ({ result, filteredResults, rocket }: FilterParams) => {
       newResults = newResults.filter((key: string) => {
         const item = result[key];
 
-        if (item.name.toLowerCase().replace(/ /g, "").match(rocket)) {
+        if (item.name.toLowerCase().replace(/ /g, "").match(usableRocket)) {
           return key;
         }
       });
@@ -22,7 +21,7 @@ const getFilters = ({ result, filteredResults, rocket }: FilterParams) => {
       newResults = newResults.filter((key: string) => {
         const item = result[key];
 
-        if (item.name.toLowerCase().replace(/ /g, "").match(rocket)) {
+        if (item.name.toLowerCase().replace(/ /g, "").match(usableRocket)) {
           return key;
         }
       });
@@ -31,7 +30,7 @@ const getFilters = ({ result, filteredResults, rocket }: FilterParams) => {
       newResults = newResults.filter((key: string) => {
         const item = result[key];
 
-        if (item.name.toLowerCase().replace(/ /g, "").match(rocket)) {
+        if (item.name.toLowerCase().replace(/ /g, "").match(usableRocket)) {
           return key;
         }
       });
@@ -40,7 +39,7 @@ const getFilters = ({ result, filteredResults, rocket }: FilterParams) => {
       newResults = newResults.filter((key: string) => {
         const item = result[key];
 
-        if (item.name.toLowerCase().replace(/ /g, "").match(rocket)) {
+        if (item.name.toLowerCase().replace(/ /g, "").match(usableRocket)) {
           return key;
         }
       });

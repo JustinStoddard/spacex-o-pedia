@@ -163,7 +163,6 @@ const useStyles = makeStyles((theme) => createStyles({
 
 const LaunchesAccordion = ({ result, category }: LaunchesAccordionProps) => {
   const classes = useStyles();
-  const results = Object.keys(result).reverse();
   const history = useHistory();
   const isMobile = useMediaQuery("(max-width: 600px)");
   const [expanded, setExpanded] = useState("");
@@ -176,9 +175,9 @@ const LaunchesAccordion = ({ result, category }: LaunchesAccordionProps) => {
   };
 
   const generateResults = useCallback(() => {
-    let filteredResults = results;
+    let filteredResults;
 
-    filteredResults = getFilters({ result, filteredResults, searchValue, category });
+    filteredResults = getFilters({ result, searchValue, category });
 
     let count = Math.round(filteredResults.length / (isMobile ? 3 : 10));
     count = isMobile ? count : count + 1;

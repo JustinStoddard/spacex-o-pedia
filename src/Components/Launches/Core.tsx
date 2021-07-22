@@ -18,9 +18,7 @@ const Core = ({ core }: CoresProps) => {
   useEffect(() => {
     let mounted = true;
 
-    if (core.core) {
-      getData();
-    }
+    if (core.core && mounted) getData();
 
     return () => {
       mounted = false;

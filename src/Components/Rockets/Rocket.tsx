@@ -95,13 +95,12 @@ const useStyles = makeStyles((theme) => createStyles({
 
 const Rocket = ({ result, rocket }: RocketProps) => {
   const classes = useStyles();
-  const results = Object.keys(result);
   const history = useHistory();
   
   const generateResults = useCallback(() => {
-    let filteredResults = results;
+    let filteredResults;
 
-    filteredResults = getFilters({ result, filteredResults, rocket });
+    filteredResults = getFilters({ result, rocket });
 
     return {
       filteredResults,

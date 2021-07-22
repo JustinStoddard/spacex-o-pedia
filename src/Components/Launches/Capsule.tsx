@@ -18,7 +18,7 @@ const Capsule = ({ capsule }: CapsuleProps) => {
   useEffect(() => {
     let mounted = true;
 
-    getData();
+    if (mounted) getData();
 
     return () => {
       mounted = false;

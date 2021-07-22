@@ -5,24 +5,26 @@ interface FilterParams {
   category?: string;
 }
 
-const getFilters = ({ result, filteredResults, searchValue, category }: FilterParams) => {
-  let newResults = filteredResults;
+const getFilters = ({ result, searchValue, category }: FilterParams) => {
+  let newResults = Object.keys(result).reverse();
   let usableCategory = category?.toLowerCase();
 
-  //For search
-  newResults = newResults.filter((key: string) => {
-    const item = result[key];
-
-    if (item.name.toLowerCase().match(searchValue?.toLowerCase())) {
-      return key;
-    }
-  });
+  if (searchValue) {
+    //For search
+    newResults = newResults.filter((key: string) => {
+      const item = result[key];
+  
+      if (item.name.toLowerCase().match(searchValue?.toLowerCase())) {
+        return key;
+      }
+    });
+  }
 
   switch (usableCategory) {
     case "crew":
       newResults = newResults.filter((key: string) => {
         const item = result[key];
-        const matchesCrew = item.name.toLowerCase().match(category);
+        const matchesCrew = item.name.toLowerCase().match(usableCategory);
         const matchesOtherCrewMissions = item.name.toLowerCase().match("cctcap")
     
         if (matchesCrew || matchesOtherCrewMissions) {
@@ -34,7 +36,7 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
       newResults = newResults.filter((key: string) => {
         const item = result[key];
     
-        if (item.name.toLowerCase().match(category)) {
+        if (item.name.toLowerCase().match(usableCategory)) {
           return key;
         }
       });
@@ -43,7 +45,7 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
       newResults = newResults.filter((key: string) => {
         const item = result[key];
     
-        if (item.name.toLowerCase().match(category)) {
+        if (item.name.toLowerCase().match(usableCategory)) {
           return key;
         }
       });
@@ -52,7 +54,7 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
       newResults = newResults.filter((key: string) => {
         const item = result[key];
     
-        if (item.name.toLowerCase().match(category)) {
+        if (item.name.toLowerCase().match(usableCategory)) {
           return key;
         }
       });
@@ -61,7 +63,7 @@ const getFilters = ({ result, filteredResults, searchValue, category }: FilterPa
       newResults = newResults.filter((key: string) => {
         const item = result[key];
     
-        if (item.name.toLowerCase().match(category)) {
+        if (item.name.toLowerCase().match(usableCategory)) {
           return key;
         }
       });

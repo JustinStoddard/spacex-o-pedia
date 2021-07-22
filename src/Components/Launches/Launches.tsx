@@ -58,7 +58,7 @@ const Launches = ({}: LaunchesProps) => {
   useEffect(() => {
     let mounted = true;
 
-    getData();
+    if (mounted) getData();
 
     return () => {
       mounted = false;

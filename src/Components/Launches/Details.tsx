@@ -36,8 +36,6 @@ const Details = ({ details }: DetailsProps) => {
   } = details;
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  console.log(details)
-
   return (
     <Grid container spacing={2}>
       {links?.patch?.small && (

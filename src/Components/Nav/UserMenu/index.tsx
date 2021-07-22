@@ -7,7 +7,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { Person, AddCircle, Cancel, Public, Favorite } from '@material-ui/icons';
+import { Person, Fingerprint, Cancel, Public, Favorite } from '@material-ui/icons';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -101,7 +101,7 @@ const UserMenu = ({}: UserMenuProps) => {
 
   const actions = [
     {
-      icon: isAuthenticated ? <Cancel color="inherit" className={classes.navIcon} /> : <AddCircle color="inherit" className={classes.navIcon} />,
+      icon: isAuthenticated ? <Cancel color="inherit" className={classes.navIcon} /> : <Fingerprint color="inherit" className={classes.navIcon} />,
       name: isAuthenticated ? 'Logout' : 'Login',
     },
     {

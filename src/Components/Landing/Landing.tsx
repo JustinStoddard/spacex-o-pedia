@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   makeStyles,
   createStyles,
   Grid
 } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import LaunchesCard from './LaunchesCard';
+import RocketsCard from './RocketsCard';
+
+import useFetchData from '../../Services/hooks/useFetchData';
 
 const useStyles = makeStyles(theme => createStyles({
   landingPageContainer: {
@@ -117,6 +121,21 @@ const useStyles = makeStyles(theme => createStyles({
 const LandingPage = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [{ result: launchesResult }, getLaunchesData] = useFetchData("launches");
+  const [{ result: rocketsResult }, getRocketsData] = useFetchData("rockets");
+
+  useEffect(() => {
+    let mounted = true;
+
+    if (mounted) {
+      getLaunchesData();
+      getRocketsData();
+    }
+
+    return () => {
+      mounted = false;
+    }
+  }, []);
 
   const launchOptions = [
     {
@@ -147,7 +166,7 @@ const LandingPage = () => {
 
   const rocketOptions = [
     {
-      name: "Falcon 1",
+      name: "Starship",
     },
     {
       name: "Falcon 9",
@@ -156,8 +175,8 @@ const LandingPage = () => {
       name: "Falcon Heavy",
     },
     {
-      name: "Starship",
-    }
+      name: "Falcon 1",
+    },
   ];
 
   return (
@@ -170,19 +189,15 @@ const LandingPage = () => {
         <Grid item xs={12}>
           <div className={classes.landingHeader}>Official Launches</div>
         </Grid>
-        {launchOptions.map((option, index) => {
+        {launchOptions.map((option: any) => {
           const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
           return (
-            <Grid item key={index} xs={6} sm={4} md={3} lg={2}>
-              <button
-                type="button"
-                className={classes.optionCardContainer}
-                onClick={() => history.push(`/launches/${prettyLinkParam}`)}
-              >
-                <div className={classes.optionCardText}>{option.name}</div>
-              </button>
-            </Grid>
+            <LaunchesCard
+              prettyLink={prettyLinkParam}
+              option={option}
+              result={launchesResult ?? []}
+            />
           );
         })}
         <Grid item xs={12}>
@@ -192,20 +207,13 @@ const LandingPage = () => {
           const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
           return (
-            <Grid item key={index} xs={6} sm={4} md={3} lg={2}>
-              <button
-                type="button"
-                className={classes.optionCardContainer}
-                onClick={() => history.push(`/rockets/${prettyLinkParam}`)}
-              >
-                <div className={classes.optionCardText}>{option.name}</div>
-              </button>
-            </Grid>
+            <RocketsCard
+              prettyLink={prettyLinkParam}
+              option={option}
+              result={rocketsResult ?? []}
+            />
           );
         })}
-        {/* <Grid item xs={12}>
-          <div className={classes.landingHeader}>Roadster</div>
-        </Grid> */}
       </Grid>
     </div>
   );
