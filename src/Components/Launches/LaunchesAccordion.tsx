@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => createStyles({
     borderRadius: "5px",
     border: "2px solid #000",
     transition: "0.3s",
-    transform: "translate(0px, 0px)"
+    transform: "translate(0px, 0px)",
+    margin: "15px 0px"
   },
   accordionExpanded: {
     transition: "0.3s",
