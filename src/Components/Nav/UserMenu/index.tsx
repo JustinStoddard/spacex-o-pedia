@@ -4,6 +4,7 @@ import {
   createStyles,
   Avatar,
   Backdrop,
+  useMediaQuery,
 } from '@material-ui/core';
 import { Person, AddCircle, Cancel } from '@material-ui/icons';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
@@ -50,6 +51,13 @@ const useStyles = makeStyles((theme) => createStyles({
   },
   backDrop: {
     zIndex: 2
+  },
+  navToolTip: {
+    background: "#0009",
+    color: "#fff",
+    fontFamily: theme.appDrawer.fonts?.primary,
+    fontSize: "11px",
+    padding: "4px 8px",
   }
 }));
 
@@ -58,6 +66,7 @@ const UserMenu = ({}: UserMenuProps) => {
   const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
   const [open, setOpen] = useState<boolean>(false);
   const env = getEnvVar('NODE_ENV');
+  const isTablet = useMediaQuery('(max-width: 850px)');
 
   const isProd = env === "production";
 
@@ -98,6 +107,7 @@ const UserMenu = ({}: UserMenuProps) => {
         onClick={() => setOpen(!open)}
         open={open}
         direction="up"
+        transitionDuration={0}
         icon={
           <>
             {user?.picture ? (
@@ -119,6 +129,10 @@ const UserMenu = ({}: UserMenuProps) => {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
+            tooltipOpen={isTablet}
+            classes={{
+              staticTooltipLabel: classes.navToolTip
+            }}
             onClick={() => handleNavClose(action.name)}
           />
         ))}
