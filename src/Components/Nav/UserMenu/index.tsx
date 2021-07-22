@@ -7,7 +7,7 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { Person, AddCircle, Cancel, Public, GitHub } from '@material-ui/icons';
+import { Person, AddCircle, Cancel, Public, Favorite } from '@material-ui/icons';
 import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -81,28 +81,32 @@ const UserMenu = ({}: UserMenuProps) => {
     switch (name) {
       case "Login":
         loginWithRedirect();
-        setOpen(false);
         break;
       case "Logout":
         isProd ? logout({ returnTo: "https://space-x-opedia.herokuapp.com" }) : logout({ returnTo: "http://localhost:3000" });
-        setOpen(false);
         break;
       case "Home":
         history.push("/");
-        setOpen(false);
         break;
       case "About":
         history.push("/about");
-        setOpen(false);
+        break;
+      case "Favorites":
+        history.push("/favorites")
         break;
       default:
     };
+    setOpen(false);
   };
 
   const actions = [
     {
       icon: isAuthenticated ? <Cancel color="inherit" className={classes.navIcon} /> : <AddCircle color="inherit" className={classes.navIcon} />,
       name: isAuthenticated ? 'Logout' : 'Login',
+    },
+    {
+      icon: <Favorite color="inherit" className={classes.navIcon} />,
+      name: "Favorites"
     },
     {
       icon: <Person color="inherit" className={classes.navIcon} />,
