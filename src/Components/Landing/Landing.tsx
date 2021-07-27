@@ -203,7 +203,7 @@ const LandingPage = () => {
         <Grid item xs={12}>
           <div className={classes.landingHeader}>Rockets</div>
         </Grid>
-        {rocketOptions.map((option, index) => {
+        {rocketOptions.map((option: any) => {
           const prettyLinkParam = option.name.replace(/ /g, "").toLowerCase();
           
           return (

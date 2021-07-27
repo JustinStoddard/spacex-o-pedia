@@ -90,7 +90,6 @@ const RocketsCard = ({ prettyLink, option, result }: RocketsCardProps) => {
   const history = useHistory();
 
   const rockets = getFilters({ result, rocket: option.name });
-  console.log(option.name, rockets);
   const abreviation = getAbreviation(1456);
 
   console.log(result[rockets[2]]);

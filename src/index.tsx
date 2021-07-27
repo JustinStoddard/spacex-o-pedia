@@ -11,12 +11,16 @@ import getEnvVar from './Helpers/getEnvVar';
 
 const domain = getEnvVar('REACT_APP_AUTH0_DOMAIN');
 const clientId = getEnvVar('REACT_APP_AUTH0_CLIENT_ID');
+const audience = getEnvVar('REACT_APP_AUTH0_AUDIENCE');
+const scopes = getEnvVar('REACT_APP_AUTH0_SCOPES');
 
 ReactDOM.render(
   <Auth0Provider
     domain={domain || ""}
     clientId={clientId || ""}
     redirectUri={window.location.origin}
+    audience={audience}
+    scopes={scopes}
   >
     <ThemeProvider theme={theme}>
       <CssBaseline>

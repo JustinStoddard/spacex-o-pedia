@@ -90,11 +90,10 @@ const LaunchesCard = ({ prettyLink, option, result }: LaunchesCardProps) => {
   const history = useHistory();
 
   const launches = getFilters({ result, category: option.name });
-  console.log(option.name, launches);
   const count = launches.length;
   const abreviation = getAbreviation(1456);
 
-  console.log(result[launches[0]]);
+  // console.log(result[launches[0]]);
 
   return (
     <Grid item xs={6} sm={4} md={3} lg={2}>
